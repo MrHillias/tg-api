@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const sequelize = require("./db");
-const User = require("./models/User");
+const User = require("./models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
