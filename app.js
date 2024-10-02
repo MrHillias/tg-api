@@ -67,5 +67,7 @@ app.get("/", (req, res) => {
 
 // Запуск сервера
 app.listen(PORT, () => {
-  console.log(`Сервер запущен на порту ${PORT}`);
+  const HOST = process.env.HOST || "localhost";
+  const baseUrl = `http://${HOST}:${PORT}`;
+  console.log(`Сервер запущен по адресу ${baseUrl}`);
 });
