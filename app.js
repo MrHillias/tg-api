@@ -59,6 +59,11 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// Endpoint для тестов
+app.get("/", (req, res) => {
+  res.send("API раб отает!");
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
