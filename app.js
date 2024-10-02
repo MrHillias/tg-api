@@ -48,6 +48,17 @@ app.put("/users/:chatId", async (req, res) => {
   }
 });
 
+// Endpoint для получения всех пользователей
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.findAll(); // Получаем всех пользователей
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
