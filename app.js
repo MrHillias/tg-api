@@ -51,6 +51,7 @@ app.put("/users/:chatId", async (req, res) => {
 // Endpoint для получения всех пользователей
 app.get("/users", async (req, res) => {
   try {
+    console.log(`Отправлен запрос users`);
     const users = await User.findAll(); // Получаем всех пользователей
     res.json(users);
   } catch (error) {
