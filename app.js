@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const sequelize = require("./db");
 const User = require("./models");
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
+
+// Разрешаем все источники
+app.use(cors());
 
 // Проверка соединения с БД
 sequelize
