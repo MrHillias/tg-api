@@ -36,13 +36,20 @@ app.get("/users/:chatId", async (req, res) => {
 
 // Endpoint для обновления данных пользователя
 app.put("/users/:chatId", async (req, res) => {
-  const { firstname, lastname, username, avatar, score } = req.body;
+  const { firstname, lastname, username, avatar, score, gamesLeft } = req.body;
 
   try {
     const user = await User.findOne({ where: { chatId: req.params.chatId } });
     if (user) {
       // Обновление данных
-      await user.update({ firstname, lastname, username, avatar, score });
+      await user.update({
+        firstname,
+        lastname,
+        username,
+        avatar,
+        score,
+        gamesLeft,
+      });
       res.json(user);
     } else {
       res.status(404).json({ error: "Пользователь не найден" });
