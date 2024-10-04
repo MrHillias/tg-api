@@ -11,6 +11,8 @@ const UserInvite = require("./models_invite");
 
 const has24HoursPassed = require("./dateUtils");
 
+const checkSubscription = require("./subUtils");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -149,6 +151,12 @@ app.get("/invites/:chatId", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Ошибка при поиске пользователя" });
   }
+});
+
+//Подписки
+app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
+  const userId = req.params.chatId;
+  checkSubscription(userId, "@Goidasexual");
 });
 
 // Запуск сервера
