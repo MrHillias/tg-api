@@ -156,7 +156,7 @@ app.get("/invites/:chatId", async (req, res) => {
 //Подписки
 app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
   const userId = req.params.chatId;
-  checkSubscription(userId, "@Goidasexual");
+  checkSubscription(userId, "@meme171k");
 });
 
 // Запуск сервера
