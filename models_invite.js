@@ -6,6 +6,7 @@ const User = sequelize.define("user", {
   chatId: { type: DataTypes.STRING, unique: true },
   code: { type: DataTypes.STRING, unique: true },
   inviteLink: { type: DataTypes.STRING, unique: true },
+  friendsId: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: true },
 });
 
 module.exports = User;
