@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const sequelize = require("./db");
 const User = require("./models");
+
 const has24HoursPassed = require("./dateUtils");
 
 const app = express();
@@ -43,8 +44,6 @@ app.get("/users/:chatId", async (req, res) => {
     res.status(500).json({ error: "Ошибка при поиске пользователя" });
   }
 });
-//const currentDate = new Date();
-//const formattedDate = formatDate(currentDate);
 // Endpoint для обновления данных пользователя
 app.put("/users/:chatId", async (req, res) => {
   const { firstname, lastname, username, avatar, score, gamesLeft } = req.body;
