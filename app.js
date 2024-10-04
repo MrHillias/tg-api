@@ -46,7 +46,17 @@ app.get("/users/:chatId", async (req, res) => {
 });
 // Endpoint для обновления данных пользователя
 app.put("/users/:chatId", async (req, res) => {
-  const { firstname, lastname, username, avatar, score, gamesLeft } = req.body;
+  const {
+    firstname,
+    lastname,
+    username,
+    avatar,
+    score,
+    gamesLeft,
+    lastTimeGamesAdded,
+    currentStreak,
+    updatedToday,
+  } = req.body;
 
   try {
     const user = await User.findOne({ where: { chatId: req.params.chatId } });
@@ -59,6 +69,9 @@ app.put("/users/:chatId", async (req, res) => {
         avatar,
         score,
         gamesLeft,
+        lastTimeGamesAdded,
+        currentStreak,
+        updatedToday,
       });
       res.json(user);
     } else {
