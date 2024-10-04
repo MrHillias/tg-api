@@ -126,7 +126,7 @@ app.get("/", (req, res) => {
 //Инвайты
 
 // Добавьте новый элемент в массив
-record.yourArrayColumn.push(newItem);
+//record.yourArrayColumn.push(newItem);
 
 app.post("/invites/:chatId", async (req, res) => {
   const chatId = req.params.chatId;
