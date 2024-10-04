@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const sequelize = require("./db");
 const User = require("./models");
+const has24HoursPassed = require("./dateUtils");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,14 @@ app.get("/users/:chatId", async (req, res) => {
   try {
     const user = await User.findOne({ where: { chatId: req.params.chatId } });
     if (user) {
+      const eventDateStr = user.lastTimeGamesAdded;
+      // Проверяем, если eventDateStr равен null, задаем текущее время
+      if (!eventDateStr) {
+        user.eventDate = new Date();
+        user.hoursPassed = 0;
+      } else {
+        user.hoursPassed = has24HoursPassed(eventDateStr);
+      }
       res.json(user);
     } else {
       res.status(404).json({ error: "Пользователь не найден" });
@@ -33,7 +42,8 @@ app.get("/users/:chatId", async (req, res) => {
     res.status(500).json({ error: "Ошибка при поиске пользователя" });
   }
 });
-
+//const currentDate = new Date();
+//const formattedDate = formatDate(currentDate);
 // Endpoint для обновления данных пользователя
 app.put("/users/:chatId", async (req, res) => {
   const { firstname, lastname, username, avatar, score, gamesLeft } = req.body;
