@@ -29,7 +29,7 @@ app.get("/users/:chatId", async (req, res) => {
       const eventDateStr = user.lastTimeGamesAdded;
       // Проверяем, если eventDateStr равен null, задаем текущее время
       if (!eventDateStr) {
-        user.eventDate = new Date();
+        user.lastTimeGamesAdded = new Date();
         user.hoursPassed = 0;
       } else {
         user.hoursPassed = has24HoursPassed(eventDateStr);
