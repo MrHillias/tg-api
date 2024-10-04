@@ -1,9 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 
 const sequelize = require("./db");
 const User = require("./models");
+
+const sequelize_invite = require("./db_invites");
+const UserInvite = require("./models_invite");
 
 const has24HoursPassed = require("./dateUtils");
 
@@ -21,6 +25,24 @@ sequelize
   .authenticate()
   .then(() => console.log("Соединение с базой данных установлено"))
   .catch((err) => console.error("Невозможно подключиться к базе данных:", err));
+
+// Синхронизация таблиц
+sequelize
+  .sync() // Используйте эту строку, чтобы убедиться, что таблицы созданы
+  .then(() => console.log("Таблицы синхронизированы"))
+  .catch((err) => console.error("Ошибка синхронизации:", err));
+
+// Проверка соединения с БД
+sequelize_invite
+  .authenticate()
+  .then(() => console.log("Соединение с базой данных установлено"))
+  .catch((err) => console.error("Невозможно подключиться к базе данных:", err));
+
+// Синхронизация таблиц
+sequelize_invite
+  .sync() // Используйте эту строку, чтобы убедиться, что таблицы созданы
+  .then(() => console.log("Таблицы синхронизированы"))
+  .catch((err) => console.error("Ошибка синхронизации:", err));
 
 // Endpoint для поиска пользователя по chatId
 app.get("/users/:chatId", async (req, res) => {
@@ -97,6 +119,33 @@ app.get("/users", async (req, res) => {
 // Endpoint для тестов
 app.get("/", (req, res) => {
   res.send("API раб отает!");
+});
+
+//Инвайты
+
+app.post("/invites/:chatId", async (req, res) => {
+  const chatId = req.params.chatId;
+  const uniqueCode = uuidv4();
+  const inviteLink = `https://t.me/drive/app?startapp=ref_${uniqueCode}`;
+  try {
+    await UserInvite.create({ chatId, code: uniqueCode, inviteLink });
+    res.status(201).json({ inviteLink });
+  } catch (err) {
+    return res.status(400).json({ error: err.message });
+  }
+});
+
+app.get("/invites/:chatId", async (req, res) => {
+  try {
+    const user = await UserInvite.findOne({
+      where: { chatId: req.params.chatId },
+    });
+    if (user) {
+      res.json(user.inviteLink);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Ошибка при поиске пользователя" });
+  }
 });
 
 // Запуск сервера
