@@ -34,6 +34,7 @@ app.get("/users/:chatId", async (req, res) => {
       } else {
         user.hoursPassed = has24HoursPassed(eventDateStr);
       }
+      user.save();
       res.json(user);
     } else {
       res.status(404).json({ error: "Пользователь не найден" });
