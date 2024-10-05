@@ -228,7 +228,7 @@ app.get("/users/:chatId/tasks", async (req, res) => {
 app.get("/users/tasks/:chatId", async (req, res) => {
   try {
     console.log(`Начато создание тасков`);
-    const userChatId = req.params.id;
+    const userChatId = req.params.chatId;
     const user = await UserTasks.create({ chatId: userChatId });
 
     await Task.bulkCreate([
