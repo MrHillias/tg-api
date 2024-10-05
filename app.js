@@ -59,8 +59,10 @@ app.get("/users/:chatId", async (req, res) => {
         await user.save();
       } else {
         const hoursPassed = has24HoursPassed(eventDateStr);
-        if (hoursPassed >= 24 && user.updatedToday === true) {
+        console.log(`hours passed = ` + hoursPassed);
+        if (hoursPassed >= 24 && user.updatedToday) {
           user.updatedToday = false;
+          console.log(`updatedToday`);
           await user.save();
         }
       }
