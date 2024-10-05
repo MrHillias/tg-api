@@ -49,6 +49,7 @@ sequelize_invite
 // Endpoint для поиска пользователя по chatId
 app.get("/users/:chatId", async (req, res) => {
   try {
+    console.log(`Отправлен запрос "/users/:chatId"`);
     const user = await User.findOne({ where: { chatId: req.params.chatId } });
     if (user) {
       const eventDateStr = user.lastTimeGamesAdded;
