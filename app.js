@@ -237,14 +237,14 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         points: 10,
         content: "Fudg",
         isCompleted: false,
-        userId: user.id,
+        chatId: user.chatId,
       },
       {
         title: "Task 2",
         points: 100,
         content: "Amber",
         isCompleted: false,
-        userId: user.id,
+        chatId: user.chatId,
       },
     ]);
     console.log(`Завершено создание тасков`);
