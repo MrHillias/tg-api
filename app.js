@@ -161,7 +161,7 @@ app.get("/invites/:chatId", async (req, res) => {
 app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
   try {
     const userId = req.params.chatId;
-    const subbed = checkSubscription(userId, "@goidasexual");
+    const subbed = await checkSubscription(userId, "@goidasexual");
     if (subbed) {
       res.send("Subbed");
     } else {
