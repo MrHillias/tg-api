@@ -177,7 +177,7 @@ app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
 
 app.get("/TaskCheck/X/:chatId", async (req, res) => {
   const userId = req.params.chatId;
-  checkSubscription(userId, "@meme171k");
+  checkSubscription(userId, "@hoochYou");
 });
 
 // Запуск сервера
