@@ -56,12 +56,12 @@ app.get("/users/:chatId", async (req, res) => {
       if (!eventDateStr) {
         user.lastTimeGamesAdded = new Date();
         user.hoursPassed = 0;
-        user.save();
+        await user.save();
       } else {
-        user.hoursPassed = has24HoursPassed(eventDateStr);
-        if (user.hoursPassed >= 24 && user.updatedToday == true) {
+        const hoursPassed = has24HoursPassed(eventDateStr);
+        if (hoursPassed >= 24 && user.updatedToday == true) {
           user.updatedToday = false;
-          user.save();
+          await user.save();
         }
       }
       res.json(user);
