@@ -17,8 +17,10 @@ const UserTasks = require("./User");
 const Task = require("./models_tasks");
 
 // Настройка ассоциаций
-UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
-Task.belongsTo(UserTasks, { foreignKey: "userId", as: "owner" });
+/* UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
+Task.belongsTo(UserTasks, { foreignKey: "userId", as: "owner" }); */
+UserTasks.associate({ Task });
+Task.associate({ UserTasks });
 
 module.exports = { UserTasks, Task };
 
@@ -277,10 +279,10 @@ app.get("/users/:chatId/tasks/", async (req, res) => {
   const userId = req.params.chatId;
 
   try {
-    // Получаем пользователя с задачами
+    // Получаем пользователя с задачами, используя псевдоним
     const userWithTasks = await UserTasks.findOne({
       where: { chatId: userId },
-      include: Task, // Включаем связанные задачи
+      include: [{ model: Task, as: "Tasks" }], // Указываем псевдоним здесь
     });
 
     if (!userWithTasks) {

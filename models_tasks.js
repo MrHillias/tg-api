@@ -2,7 +2,15 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./db_tasks");
 const UserTasks = require("./User");
 
-class Task extends Model {}
+class Task extends Model {
+  static associate(models) {
+    // Определяем обратную ассоциацию, если нужно (либо оставьте пустым)
+    Task.belongsTo(models.UserTasks, {
+      foreignKey: "chatId", // Поле из модели UserTasks, к которому ссылается Task
+      as: "User", // Псевдоним для использования в include
+    });
+  }
+}
 
 Task.init(
   {
