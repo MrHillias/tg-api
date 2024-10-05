@@ -58,6 +58,9 @@ app.get("/users/:chatId", async (req, res) => {
         user.hoursPassed = 0;
       } else {
         user.hoursPassed = has24HoursPassed(eventDateStr);
+        if (user.hoursPassed >= 24) {
+          user.updatedToday = false;
+        }
       }
       user.save();
       res.json(user);
@@ -155,6 +158,11 @@ app.get("/invites/:chatId", async (req, res) => {
 
 //Подписки
 app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
+  const userId = req.params.chatId;
+  checkSubscription(userId, "@meme171k");
+});
+
+app.get("/TaskCheck/X/:chatId", async (req, res) => {
   const userId = req.params.chatId;
   checkSubscription(userId, "@meme171k");
 });
