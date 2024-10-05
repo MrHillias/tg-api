@@ -279,7 +279,7 @@ app.get("/users/:chatId/tasks/", async (req, res) => {
   try {
     // Получаем пользователя с задачами
     const userWithTasks = await UserTasks.findOne({
-      where: { id: userId },
+      where: { chatId: userId },
       include: Task, // Включаем связанные задачи
     });
 
