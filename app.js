@@ -253,7 +253,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
     return res.status(500).json({ message: "Ошибка при создании задач" });
   }
 
-  try {
+  /*  try {
     // Получаем пользователя с задачами
     console.log(`Ищем пользователя`);
     const userWithTasks = await UserTasks.findOne({
@@ -269,12 +269,12 @@ app.get("/users/tasks/:chatId", async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при получении задач" });
-  }
+  } */
 });
 
 // Создание маршрута для получения тасков пользователя по его ID
-app.get("/users/tasks/:chatId", async (req, res) => {
-  const userId = req.params.id;
+app.get("/users/:chatId/tasks/", async (req, res) => {
+  const userId = req.params.chatId;
 
   try {
     // Получаем пользователя с задачами
