@@ -33,6 +33,7 @@ async function checkSubscription(userId, chatId) {
       "Ошибка при проверке подписки:",
       error.response ? error.response.data : error.message
     );
+    return false;
   }
 }
 
