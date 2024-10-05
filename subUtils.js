@@ -26,6 +26,7 @@ async function checkSubscription(userId, chatId) {
       return true;
     } else {
       console.log("Пользователь не подписан на канал.");
+      return false;
     }
   } catch (error) {
     console.error(
@@ -33,7 +34,6 @@ async function checkSubscription(userId, chatId) {
       error.response ? error.response.data : error.message
     );
   }
-  return false;
 }
 
 module.exports = checkSubscription;

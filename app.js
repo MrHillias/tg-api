@@ -159,8 +159,17 @@ app.get("/invites/:chatId", async (req, res) => {
 
 //Подписки
 app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
-  const userId = req.params.chatId;
-  checkSubscription(userId, "@goidasexual");
+  try {
+    const userId = req.params.chatId;
+    const subbed = checkSubscription(userId, "@goidasexual");
+    if (subbed) {
+      res.send("Subbed");
+    } else {
+      res.send("Not subbed");
+    }
+  } catch {
+    res.status(500).json({ error: "Ошибка при проверке пользователя" });
+  }
 });
 
 app.get("/TaskCheck/X/:chatId", async (req, res) => {
