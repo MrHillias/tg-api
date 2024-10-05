@@ -26,9 +26,8 @@ Task.init(
     isCompleted: {
       type: DataTypes.BOOLEAN,
     },
-    userId: {
-      // Добавляем поле userId
-      type: DataTypes.INTEGER,
+    chatId: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
