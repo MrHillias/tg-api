@@ -1,9 +1,39 @@
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./db_tasks");
-const { DataTypes } = require("sequelize");
+const UserTasks = require("./User");
 
-const UserTasks = sequelize.define("user", {
-  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  chatId: { type: DataTypes.STRING, unique: true },
-});
+class Task extends Model {}
 
-module.exports = UserTasks;
+Task.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    points: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    isCompleted: {
+      type: DataTypes.BOOLEAN,
+    },
+  },
+  {
+    sequelize,
+    modelName: "Task",
+  }
+);
+
+// Определение ассоциации
+Task.belongsTo(UserTasks, { foreignKey: "userId", as: "user" });
+
+module.exports = Task;

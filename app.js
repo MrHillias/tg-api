@@ -12,8 +12,14 @@ const sequelize_invite = require("./db_invites");
 const UserInvite = require("./models_invite");
 
 //Таски
-const { sequelize_tasks } = require("./db_tasks");
-require("./Associations");
+const UserTasks = require("./User");
+const Task = require("./Task");
+
+// Настройка ассоциаций
+UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
+Task.belongsTo(UserTasks, { foreignKey: "userId", as: "user" });
+
+module.exports = { UserTasks, Task };
 
 const has24HoursPassed = require("./dateUtils");
 

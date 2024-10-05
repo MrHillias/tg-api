@@ -1,39 +1,17 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./db_tasks");
-const UserTasks = require("./User");
 
-class Task extends Model {}
+class UserTasks extends Model {}
 
-Task.init(
+UserTasks.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false, // Название задачи обязательно
-    },
-    points: {
-      type: DataTypes.INTEGER,
-      allowNull: false, // Количество очков обязательно
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false, // Название задачи обязательно
-    },
-    isCompleted: {
-      type: DataTypes.BOOLEAN, // Статус выполнения
-    },
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    chatId: { type: DataTypes.STRING, unique: true },
   },
   {
     sequelize,
-    modelName: "Task",
+    modelName: "UserTasks",
   }
 );
 
-// Определение ассоциации
-Task.belongsTo(UserTasks, { foreignKey: "userChatId" }); // task будет иметь поле userChatId, чтобы ссылаться на пользователя
-
-module.exports = Task;
+module.exports = UserTasks;
