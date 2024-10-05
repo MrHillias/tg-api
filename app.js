@@ -287,7 +287,7 @@ app.get("/users/:chatId/tasks/", async (req, res) => {
       return res.status(404).json({ message: "Пользователь не найден" });
     }
 
-    return res.json(userWithTasks.Tasks); // Возвращаем только задачи пользователя
+    return res.json(userWithTasks.tasks); // Возвращаем только задачи пользователя
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при получении задач" });
