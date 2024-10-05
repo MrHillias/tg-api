@@ -12,7 +12,7 @@ const sequelize_invite = require("./db_invites");
 const UserInvite = require("./models_invite");
 
 //Таски
-const sequelize_tasks = require("./db_invites");
+const sequelize_tasks = require("./db_tasks");
 const UserTasks = require("./User");
 const Task = require("./models_tasks");
 
