@@ -13,7 +13,7 @@ const UserInvite = require("./models_invite");
 
 //Таски
 const UserTasks = require("./User");
-const Task = require("./Task");
+const Task = require("./models_tasks");
 
 // Настройка ассоциаций
 UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
