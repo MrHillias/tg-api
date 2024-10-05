@@ -248,7 +248,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
       },
     ]);
     console.log(`Завершено создание тасков`);
-  } catch {
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при создании задач" });
   }
