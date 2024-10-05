@@ -34,6 +34,6 @@ Task.init(
 );
 
 // Определение ассоциации
-Task.belongsTo(UserTasks, { foreignKey: "userId", as: "user" });
+Task.belongsTo(UserTasks, { foreignKey: "userId", as: "TaskOwner" });
 
 module.exports = Task;

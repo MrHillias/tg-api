@@ -17,7 +17,7 @@ const Task = require("./models_tasks");
 
 // Настройка ассоциаций
 UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
-Task.belongsTo(UserTasks, { foreignKey: "userId", as: "user" });
+Task.belongsTo(UserTasks, { foreignKey: "userId", as: "TaskOwner" });
 
 module.exports = { UserTasks, Task };
 
