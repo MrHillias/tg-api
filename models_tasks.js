@@ -26,14 +26,16 @@ Task.init(
     isCompleted: {
       type: DataTypes.BOOLEAN,
     },
+    userId: {
+      // Добавляем поле userId
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
     modelName: "Task",
   }
 );
-
-// Определение ассоциации
-Task.belongsTo(UserTasks, { foreignKey: "userId", as: "owner" });
 
 module.exports = Task;
