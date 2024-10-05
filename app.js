@@ -56,13 +56,14 @@ app.get("/users/:chatId", async (req, res) => {
       if (!eventDateStr) {
         user.lastTimeGamesAdded = new Date();
         user.hoursPassed = 0;
+        user.save();
       } else {
         user.hoursPassed = has24HoursPassed(eventDateStr);
-        if (user.hoursPassed >= 24) {
+        if (user.hoursPassed >= 24 && user.updatedToday == true) {
           user.updatedToday = false;
+          user.save();
         }
       }
-      user.save();
       res.json(user);
     } else {
       res.status(404).json({ error: "Пользователь не найден" });
