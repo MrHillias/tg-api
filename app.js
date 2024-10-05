@@ -131,7 +131,7 @@ app.get("/", (req, res) => {
 // Добавьте новый элемент в массив
 //record.yourArrayColumn.push(newItem);
 
-app.post("/invites/:chatId", async (req, res) => {
+/* app.post("/invites/:chatId", async (req, res) => {
   const chatId = req.params.chatId;
   const uniqueCode = uuidv4();
   const inviteLink = `https://t.me/drive/app?startapp=ref_${uniqueCode}`;
@@ -141,7 +141,7 @@ app.post("/invites/:chatId", async (req, res) => {
   } catch (err) {
     return res.status(400).json({ error: err.message });
   }
-});
+}); */
 
 app.get("/invites/:chatId", async (req, res) => {
   try {
