@@ -203,21 +203,21 @@ app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
 //таски
 
 // Создание маршрута для получения тасков пользователя по его ID
-app.get("/users/:chatId/tasks", async (req, res) => {
+app.get("/users/:chatId/tasks/", async (req, res) => {
   const userId = req.params.chatId;
 
   try {
-    // Получаем пользователя с задачами
+    // Получаем пользователя с задачами, используя псевдоним
     const userWithTasks = await UserTasks.findOne({
       where: { chatId: userId },
-      include: Task, // Включаем связанные задачи
+      include: [{ model: Task, as: "tasks" }], // Указываем псевдоним здесь
     });
 
     if (!userWithTasks) {
       return res.status(404).json({ message: "Пользователь не найден" });
     }
 
-    return res.json(userWithTasks.Tasks); // Возвращаем только задачи пользователя
+    return res.json(userWithTasks.tasks); // Возвращаем только задачи пользователя
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при получении задач" });
@@ -270,28 +270,6 @@ app.get("/users/tasks/:chatId", async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при получении задач" });
   } */
-});
-
-// Создание маршрута для получения тасков пользователя по его ID
-app.get("/users/:chatId/tasks/", async (req, res) => {
-  const userId = req.params.chatId;
-
-  try {
-    // Получаем пользователя с задачами, используя псевдоним
-    const userWithTasks = await UserTasks.findOne({
-      where: { chatId: userId },
-      include: [{ model: Task, as: "tasks" }], // Указываем псевдоним здесь
-    });
-
-    if (!userWithTasks) {
-      return res.status(404).json({ message: "Пользователь не найден" });
-    }
-
-    return res.json(userWithTasks.tasks); // Возвращаем только задачи пользователя
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Ошибка при получении задач" });
-  }
 });
 
 // Запуск сервера
