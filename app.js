@@ -17,8 +17,16 @@ const UserTasks = require("./User");
 const Task = require("./models_tasks");
 
 // Настройка ассоциаций
-UserTasks.hasMany(Task, { foreignKey: "userId", as: "tasks" });
-Task.belongsTo(UserTasks, { foreignKey: "userId", as: "owner" });
+UserTasks.hasMany(Task, {
+  foreignKey: "chatId",
+  sourceKey: "chatId",
+  as: "tasks",
+});
+Task.belongsTo(UserTasks, {
+  foreignKey: "chatId",
+  targetKey: "chatId",
+  as: "owner",
+});
 
 module.exports = { UserTasks, Task };
 
@@ -204,19 +212,18 @@ app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
 
 // Создание маршрута для получения тасков пользователя по его ID
 app.get("/users/:chatId/tasks/", async (req, res) => {
-  const userId = req.params.chatId;
+  const userChatId = req.params.chatId;
 
   try {
-    // Получаем пользователя с задачами, используя псевдоним
+    // Получаем пользователя с задачами, используя chatId
     const userWithTasks = await UserTasks.findOne({
-      where: { chatId: userId },
-      include: [{ model: Task, as: "tasks" }], // Указываем псевдоним здесь
+      where: { chatId: userChatId },
+      include: [{ model: Task, as: "tasks" }], // Псевдоним остается "tasks"
     });
 
     if (!userWithTasks) {
       return res.status(404).json({ message: "Пользователь не найден" });
     }
-    console.log(userWithTasks);
 
     return res.json(userWithTasks.tasks); // Возвращаем только задачи пользователя
   } catch (error) {
@@ -253,24 +260,6 @@ app.get("/users/tasks/:chatId", async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при создании задач" });
   }
-
-  /*  try {
-    // Получаем пользователя с задачами
-    console.log(`Ищем пользователя`);
-    const userWithTasks = await UserTasks.findOne({
-      where: { id: userId },
-      include: Task, // Включаем связанные задачи
-    });
-
-    if (!userWithTasks) {
-      return res.status(404).json({ message: "Пользователь не найден" });
-    }
-
-    return res.json(userWithTasks.Tasks); // Возвращаем только задачи пользователя
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Ошибка при получении задач" });
-  } */
 });
 
 // Запуск сервера
