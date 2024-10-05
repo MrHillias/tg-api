@@ -24,7 +24,6 @@ module.exports = { UserTasks, Task };
 const has24HoursPassed = require("./dateUtils");
 
 const checkSubscription = require("./subUtils");
-const { UserTasks } = require("./Associations");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
