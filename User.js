@@ -11,6 +11,7 @@ UserTasks.init(
   {
     sequelize,
     modelName: "UserTasks",
+    tableName: "UserTasks",
   }
 );
 
