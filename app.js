@@ -247,6 +247,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         isCompleted: false,
         chatId: user.chatId,
         icon: "FaUserFriends",
+        reason: "addFriends",
       },
       {
         title: "Avid reader",
@@ -255,6 +256,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         isCompleted: false,
         chatId: user.chatId,
         icon: "FaTelegramPlane",
+        reason: "subscribeHuch",
       },
     ]);
     console.log(`Завершено создание тасков`);

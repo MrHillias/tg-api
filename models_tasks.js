@@ -30,6 +30,7 @@ Task.init(
       allowNull: false,
     },
     icon: { type: DataTypes.STRING, allowNull: true },
+    reason: { type: DataTypes.STRING, allowNull: true },
   },
   {
     sequelize,
