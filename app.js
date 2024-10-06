@@ -265,6 +265,38 @@ app.get("/users/tasks/:chatId", async (req, res) => {
   }
 });
 
+// Обработчик PUT-запроса для обновления задачи
+app.put("/users/tasks/:taskId/", async (req, res) => {
+  const taskId = req.params.taskId; // Получаем идентификатор задачи из параметров URL
+  const { title, points, content, isCompleted, chatId, icon } = req.body; // Извлекаем данные обновления из тела запроса
+
+  try {
+    // Находим задачу по ID
+    const task = await Task.findByPk(taskId);
+
+    // Если задача не найдена, возвращаем 404
+    if (!task) {
+      return res.status(404).json({ message: "Задача не найдена" });
+    }
+
+    // Обновляем данные задачи
+    await task.update({
+      title,
+      points,
+      content,
+      isCompleted,
+      chatId,
+      icon,
+    });
+
+    // Возвращаем обновленную задачу
+    return res.json(task);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Ошибка при обновлении задачи" });
+  }
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   const HOST = process.env.HOST || "localhost";
