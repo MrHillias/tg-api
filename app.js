@@ -258,6 +258,15 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         icon: "FaTelegramPlane",
         reason: "subscribeHuch",
       },
+      {
+        title: "Prolific farmer",
+        points: 300,
+        content: "Collect 3000 coins total",
+        isCompleted: false,
+        chatId: user.chatId,
+        icon: "FaCoins",
+        reason: "farm3000",
+      },
     ]);
     console.log(`Завершено создание тасков`);
     return res.status(200).json({ message: "Задачи добавлены" });
