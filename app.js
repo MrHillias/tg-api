@@ -241,16 +241,16 @@ app.get("/users/tasks/:chatId", async (req, res) => {
 
     await Task.bulkCreate([
       {
-        title: "Task 1",
-        points: 10,
-        content: "Fudg",
+        title: "Social butterfly",
+        points: 1000,
+        content: "Invite 3 friends",
         isCompleted: false,
         chatId: user.chatId,
       },
       {
-        title: "Task 2",
-        points: 100,
-        content: "Amber",
+        title: "Avid reader",
+        points: 500,
+        content: "Subscribe to the Drive official channel",
         isCompleted: false,
         chatId: user.chatId,
       },
