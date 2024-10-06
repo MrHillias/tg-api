@@ -7,6 +7,7 @@ const User = sequelize.define("user", {
   code: { type: DataTypes.STRING, unique: true },
   inviteLink: { type: DataTypes.STRING, unique: true },
   friendsId: { type: DataTypes.ARRAY(DataTypes.STRING), allowNull: true },
+  icon: { type: DataTypes.STRING, allowNull: true },
 });
 
 module.exports = User;

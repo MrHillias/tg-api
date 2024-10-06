@@ -246,6 +246,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         content: "Invite 3 friends",
         isCompleted: false,
         chatId: user.chatId,
+        icon: FaUserFriends,
       },
       {
         title: "Avid reader",
@@ -253,6 +254,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
         content: "Subscribe to the Drive official channel",
         isCompleted: false,
         chatId: user.chatId,
+        icon: FaTelegramPlane,
       },
     ]);
     console.log(`Завершено создание тасков`);
