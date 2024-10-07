@@ -8,7 +8,7 @@ const createUser = require("./BDcontentUtils");
 
 const start = async () => {
   // Команда /start
-  bot.onText(/\/start/, async (msg) => {
+  bot.onText(/\/start(.*)/, async (msg) => {
     console.log("Received /start command:", msg); // Выводим сообщение в консоль
 
     const chatId = msg.chat.id;
