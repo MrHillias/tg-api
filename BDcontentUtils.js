@@ -76,8 +76,8 @@ const createUser = async (
       where: { code: friendUrl },
     });
     if (user) {
-      user.friendsId.push(friendUrl);
-      await user.save;
+      //user.friendsId.push(friendUrl);
+      //await user.save;
       console.log("Друг добавлен");
     } else {
       console.error("Пользователь не найден");
