@@ -77,7 +77,7 @@ const createUser = async (
     });
     if (user) {
       console.log("Пригласитель найден");
-      user.friendId.push(friendUrl);
+      user.friendsId.push(friendUrl);
       user.save;
     } else {
       console.error("Пользователь не найден");
