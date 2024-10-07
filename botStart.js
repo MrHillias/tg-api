@@ -31,7 +31,11 @@ const start = async () => {
     } catch (error) {
       console.error("Error getting user profile photos:", error);
     }
-    await createUser(chatId, firstName, lastName, username, avatarUrl, "");
+    try {
+      await createUser(chatId, firstName, lastName, username, avatarUrl, "");
+    } catch {
+      console.error("Поьзователь уже создан", error);
+    }
     // Формируем URL с параметрами пользователя
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
       firstName
