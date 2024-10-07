@@ -163,7 +163,7 @@ app.get("/users", async (req, res) => {
 });
 
 // Endpoint для регистрации юзера
-app.post("/api/data", async (req, res) => {
+app.post("/user/reg", async (req, res) => {
   try {
     const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
