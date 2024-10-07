@@ -17,6 +17,23 @@ const start = async () => {
     const username = msg.from.username || "";
 
     let avatarUrl = "";
+    let refCode = "";
+
+    // Получаем параметры из ссылки
+    const startParam = msg.text.split(" ")[1]; // Получаем текст после /start
+    if (startParam) {
+      const params = new URLSearchParams(startParam);
+      const ref = params.get("startapp"); // Получаем значение параметра startapp
+
+      // Проверяем, если ref существует
+      if (ref) {
+        // Вытаскиваем сам ref-код
+        refCode = ref.split("=")[1];
+        console.log(`Реферальный код: ${refCode}`);
+      } else {
+        console.log("Реферальный код не был предоставлен.");
+      }
+    }
 
     // Получение аватарки пользователя
     try {
@@ -32,7 +49,14 @@ const start = async () => {
       console.error("Error getting user profile photos:", error);
     }
     try {
-      await createUser(chatId, firstName, lastName, username, avatarUrl, "");
+      await createUser(
+        chatId,
+        firstName,
+        lastName,
+        username,
+        avatarUrl,
+        refCode
+      );
     } catch (error) {
       console.error("Пользователь уже создан", error);
     }
