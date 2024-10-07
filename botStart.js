@@ -17,7 +17,7 @@ const start = async () => {
     const username = msg.from.username || "";
 
     let avatarUrl = "";
-    let refCode = "";
+    let ref = "";
 
     try {
       // Получаем текст после /start
