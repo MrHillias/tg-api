@@ -8,7 +8,7 @@ const createUser = require("./BDcontentUtils");
 
 const start = async () => {
   // Команда /start
-  bot.onText(/\/start(.*)/, async (msg) => {
+  bot.onText(/\/start (.+)/, async (msg, match) => {
     console.log("Received /start command:", msg); // Выводим сообщение в консоль
 
     const chatId = msg.chat.id;
@@ -19,8 +19,9 @@ const start = async () => {
     let avatarUrl = "";
     let refCode = "";
 
-    // Получаем параметры из ссылки
-    const startParam = msg.text.split(" ")[1]; // Получаем текст после /start
+    // Получаем текст после /start
+    const startParam = match[1].trim();
+
     if (startParam) {
       const params = new URLSearchParams(startParam);
       const ref = params.get("startapp"); // Получаем значение параметра startapp
