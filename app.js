@@ -168,6 +168,7 @@ app.post("/user/reg", async (req, res) => {
     console.log(`Начат поиск`);
     const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
+    console.log(chtId, name, lastname, username, avatarUrl, friendUrl);
     await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
 
     res
