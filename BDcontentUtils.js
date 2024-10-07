@@ -1,18 +1,13 @@
 const UserModel = require("./models");
-const sequelize = require("./db");
 
-const sequelize_invite = require("./db_invites");
 const UserInvite = require("./models_invite");
 
-const sequelize_tasks = require("./db_tasks");
 const UserTasks = require("./User");
 const Task = require("./models_tasks");
 
 module.exports = { UserTasks, Task };
 
 const { v4: uuidv4 } = require("uuid");
-
-const token = "7074926259:AAH3uW4oybN23rQt_eD9pCqGdapqWz3qtYI";
 
 const createUser = async (
   chatId,

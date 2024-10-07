@@ -34,7 +34,7 @@ const has24HoursPassed = require("./dateUtils");
 
 const checkSubscription = require("./subUtils");
 
-const start = require("./UserCreate");
+const start = require("./botStart");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
