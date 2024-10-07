@@ -8,7 +8,7 @@ const createUser = require("./BDcontentUtils");
 
 const start = async () => {
   // Команда /start
-  bot.onText(/\/start (.+)/, async (msg, match) => {
+  bot.onText(/\/start (.+)/, async (msg) => {
     console.log("Received /start command:", msg); // Выводим сообщение в консоль
 
     const chatId = msg.chat.id;
@@ -19,23 +19,25 @@ const start = async () => {
     let avatarUrl = "";
     let refCode = "";
 
-    // Получаем текст после /start
-    const ref = msg.text.split("=")[1].substring(4);
-
     try {
-      console(ref);
-    } catch {
-      console("No msg text");
-    }
+      // Получаем текст после /start
+      const ref = msg.text.split("=")[1].substring(4);
 
-    if (ref !== "") {
-      // Проверяем, если ref существует
-      if (ref) {
-        console.log(`Реферальный код: ${ref}`);
-      } else {
-        console.log("Реферальный код не был предоставлен.");
+      try {
+        console(ref);
+      } catch {
+        console("No msg text");
       }
-    }
+
+      if (ref !== "") {
+        // Проверяем, если ref существует
+        if (ref) {
+          console.log(`Реферальный код: ${ref}`);
+        } else {
+          console.log("Реферальный код не был предоставлен.");
+        }
+      }
+    } catch (error) {}
 
     // Получение аватарки пользователя
     try {
