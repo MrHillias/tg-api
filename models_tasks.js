@@ -28,6 +28,7 @@ Task.init(
     chatId: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     icon: { type: DataTypes.STRING, allowNull: true },
     reason: { type: DataTypes.STRING, allowNull: true },
