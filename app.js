@@ -165,6 +165,7 @@ app.get("/users", async (req, res) => {
 // Endpoint для регистрации юзера
 app.post("/user/reg", async (req, res) => {
   try {
+    console.log(`Начат поиск`);
     const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
     await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
@@ -172,6 +173,8 @@ app.post("/user/reg", async (req, res) => {
     res
       .status(201)
       .json({ message: "Юзер успешно создан!", data: { id, name } });
+
+    console.log(`Закончен поиск`);
   } catch (error) {
     res.status(500).json({ error: "Ошибка при создании юзера" });
   }

@@ -65,7 +65,7 @@ const createUser = async (
   }
   try {
     const uniqueCode = uuidv4();
-    const inviteLink = `https://t.me/drive/app?startapp=ref_${uniqueCode}`;
+    const inviteLink = `https://t.me/drive_official_bot?startapp=${uniqueCode}`;
     await UserInvite.create({ chatId: chatId, code: uniqueCode, inviteLink });
   } catch {
     console.error("Не удалось создать инвайты:", error);
