@@ -36,6 +36,8 @@ const checkSubscription = require("./subUtils");
 
 const start = require("./botStart");
 
+const createUser = require("./BDcontentUtils");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -157,6 +159,21 @@ app.get("/users", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+// Endpoint для регистрации юзера
+app.post("/api/data", async (req, res) => {
+  try {
+    const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
+
+    await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
+
+    res
+      .status(201)
+      .json({ message: "Юзер успешно создан!", data: { id, name } });
+  } catch (error) {
+    res.status(500).json({ error: "Ошибка при создании юзера" });
   }
 });
 

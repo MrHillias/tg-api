@@ -72,6 +72,16 @@ const createUser = async (
   }
   if (friendUrl !== "") {
     //Заносим челика в список приглашенных
+    const user = await UserInvite.findOne({
+      where: { code: friendUrl },
+    });
+    if (user) {
+      console.log("Пригласитель найден");
+      user.friendId.push(friendUrl);
+      user.save;
+    } else {
+      console.error("Пользователь не найден");
+    }
   }
 };
 
