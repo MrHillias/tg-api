@@ -29,7 +29,7 @@ const createUser = async (
     console.error("Не получилось создать пользователя:", error);
   }
   try {
-    const userTask = await UserTasks.create({ chatId: chatId });
+    const userTasks = await UserTasks.create({ chatId: chatId });
 
     await Task.bulkCreate([
       {
@@ -37,7 +37,7 @@ const createUser = async (
         points: 1000,
         content: "Invite 3 friends",
         isCompleted: false,
-        chatId: userTask.chatId,
+        chatId: userTasks.chatId,
         icon: "FaUserFriends",
         reason: "addFriends",
       },
@@ -46,7 +46,7 @@ const createUser = async (
         points: 500,
         content: "Subscribe to the Drive official channel",
         isCompleted: false,
-        chatId: userTask.chatId,
+        chatId: userTasks.chatId,
         icon: "FaTelegramPlane",
         reason: "subscribeHuch",
       },
@@ -55,7 +55,7 @@ const createUser = async (
         points: 300,
         content: "Collect 3000 coins total",
         isCompleted: false,
-        chatId: userTask.chatId,
+        chatId: userTasks.chatId,
         icon: "FaCoins",
         reason: "farm3000",
       },
@@ -67,7 +67,6 @@ const createUser = async (
     const uniqueCode = uuidv4();
     const inviteLink = `https://t.me/drive/app?startapp=ref_${uniqueCode}`;
     await UserInvite.create({ chatId: chatId, code: uniqueCode, inviteLink });
-    await UserInvite.save();
   } catch {
     console.error("Не удалось создать инвайты:", error);
   }
@@ -75,5 +74,7 @@ const createUser = async (
     //Заносим челика в список приглашенных
   }
 };
+
+//createUser("1234321", "", "", "", "", "");
 
 module.exports = createUser;
