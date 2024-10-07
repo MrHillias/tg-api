@@ -20,17 +20,18 @@ const start = async () => {
     let refCode = "";
 
     // Получаем текст после /start
-    const startParam = match[1].trim();
+    const ref = msg.text.split("=")[1].substring(4);
 
-    if (startParam) {
-      const params = new URLSearchParams(startParam);
-      const ref = params.get("startapp"); // Получаем значение параметра startapp
+    try {
+      console(ref);
+    } catch {
+      console("No msg text");
+    }
 
+    if (ref !== "") {
       // Проверяем, если ref существует
       if (ref) {
-        // Вытаскиваем сам ref-код
-        refCode = ref.split("=")[1];
-        console.log(`Реферальный код: ${refCode}`);
+        console.log(`Реферальный код: ${ref}`);
       } else {
         console.log("Реферальный код не был предоставлен.");
       }
@@ -50,14 +51,7 @@ const start = async () => {
       console.error("Error getting user profile photos:", error);
     }
     try {
-      await createUser(
-        chatId,
-        firstName,
-        lastName,
-        username,
-        avatarUrl,
-        refCode
-      );
+      await createUser(chatId, firstName, lastName, username, avatarUrl, ref);
     } catch (error) {
       console.error("Пользователь уже создан", error);
     }
