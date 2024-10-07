@@ -34,6 +34,8 @@ const has24HoursPassed = require("./dateUtils");
 
 const checkSubscription = require("./subUtils");
 
+const start = require("./UserCreate");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -233,7 +235,7 @@ app.get("/users/:chatId/tasks/", async (req, res) => {
 });
 
 // Создание маршрута для создания тасков пользователя
-app.get("/users/tasks/:chatId", async (req, res) => {
+/* app.get("/users/tasks/:chatId", async (req, res) => {
   try {
     console.log(`Начато создание тасков`);
     const userChatId = req.params.chatId;
@@ -274,7 +276,7 @@ app.get("/users/tasks/:chatId", async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Ошибка при создании задач" });
   }
-});
+}); */
 
 // Обработчик PUT-запроса для обновления задачи
 app.put("/users/tasks/:taskId/", async (req, res) => {
@@ -310,6 +312,7 @@ app.put("/users/tasks/:taskId/", async (req, res) => {
 
 // Запуск сервера
 app.listen(PORT, () => {
+  start();
   const HOST = process.env.HOST || "localhost";
   const baseUrl = `http://${HOST}:${PORT}`;
   console.log(`Сервер запущен по адресу ${baseUrl}`);
