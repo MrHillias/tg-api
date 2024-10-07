@@ -33,8 +33,8 @@ const start = async () => {
     }
     try {
       await createUser(chatId, firstName, lastName, username, avatarUrl, "");
-    } catch {
-      console.error("Поьзователь уже создан", error);
+    } catch (error) {
+      console.error("Пользователь уже создан", error);
     }
     // Формируем URL с параметрами пользователя
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
