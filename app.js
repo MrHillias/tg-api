@@ -106,7 +106,7 @@ app.get("/users/:chatId", async (req, res) => {
       }
       res.json(user);
     } else {
-      res.status(404).json({ error: "Пользователь не найден" });
+      res.status.json({ error: "false" });
     }
   } catch (error) {
     res.status(500).json({ error: "Ошибка при поиске пользователя" });
