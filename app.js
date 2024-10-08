@@ -162,6 +162,28 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// Endpoint для получения друзей
+app.get("/friends/:chatId", async (req, res) => {
+  try {
+    const user = await UserInvite.findOne({
+      where: { chatId: req.params.chatId },
+    });
+    if (user && user.friendsId) {
+      const friends = await User.findAll({
+        where: {
+          id: user.friendsId,
+        },
+      });
+
+      // Теперь у вас есть массив `friends`, содержащий всех пользователей из friendsId
+      console.log(friends);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
 // Endpoint для регистрации юзера
 app.post("/user/reg", async (req, res) => {
   try {
