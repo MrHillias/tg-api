@@ -184,10 +184,9 @@ app.get("/", (req, res) => {
   res.send("API раб отает!");
 });
 
-app.get("/tasks/:chatId", async (req, res) => {
+app.get("/invites/:chatId", async (req, res) => {
   try {
-    console.log(`Отправлен запрос "/users/:chatId"`);
-    const user = await UserTasks.findOne({
+    const user = await UserInvite.findOne({
       where: { chatId: req.params.chatId },
     });
     if (user) {
