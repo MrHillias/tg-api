@@ -260,10 +260,10 @@ app.get("/invites/:chatId", async (req, res) => {
       where: { chatId: req.params.chatId },
     });
     if (user) {
-      res.json(user.inviteLink);
+      return res.json(user.inviteLink);
     }
   } catch (error) {
-    res.status(500).json({ error: "Ошибка при поиске пользователя" });
+    return res.status(500).json({ error: "Ошибка при поиске пользователя" });
   }
 });
 
@@ -273,9 +273,9 @@ app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
     const userId = req.params.chatId;
     const subbed = await checkSubscription(userId, "@hoochYou");
     if (subbed) {
-      res.send("Subbed");
+      return res.send("Subbed");
     } else {
-      res.send("Not subbed");
+      return res.send("Not subbed");
     }
   } catch {
     res.status(500).json({ error: "Ошибка при проверке пользователя" });

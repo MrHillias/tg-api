@@ -18,13 +18,19 @@ const createUser = async (
   friendUrl
 ) => {
   try {
-    await UserModel.create({
+    const userInfo = await UserModel.create({
       chatId,
       firstName,
       lastName,
       username,
       avatarUrl,
     });
+
+    userInfo.firstname = firstName;
+    userInfo.lastname = lastName;
+    await userInfo.save();
+
+    console.log("Юзер добавлен:", userInfo);
   } catch (error) {
     console.error("Не получилось создать пользователя:", error);
   }
@@ -98,9 +104,9 @@ const createUser = async (
   "123432",
   "",
   "",
-  "test",
+  "onlyUsername",
   "",
-  "04dc220d-675e-428c-b316-9c3a2734a1e0"
+  "c2acddf6-2c6f-4213-a3db-80796e56046b"
 ); */
 
 module.exports = createUser;
