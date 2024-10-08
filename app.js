@@ -184,6 +184,21 @@ app.get("/", (req, res) => {
   res.send("API раб отает!");
 });
 
+app.get("/users/:chatId", async (req, res) => {
+  try {
+    console.log(`Отправлен запрос "/users/:chatId"`);
+    const user = await UserTasks.findOne({
+      where: { chatId: req.params.chatId },
+    });
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ error: "Пользователь не найден" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Ошибка при поиске пользователя" });
+  }
+});
 //Инвайты
 
 // Добавьте новый элемент в массив

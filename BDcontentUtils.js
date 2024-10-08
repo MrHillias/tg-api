@@ -70,33 +70,32 @@ const createUser = async (
   } catch {
     console.error("Не удалось создать инвайты:", error);
   }
-  if (friendUrl !== "") {
-    //Заносим челика в список приглашенных
-    const user = await UserInvite.findOne({
-      where: { code: friendUrl },
-    });
-    if (user) {
-      // Проверяем инициализацию
-      if (!user.friendsId) {
-        user.friendsId = []; // Инициализируем как пустой массив
+  try {
+    if (friendUrl !== "") {
+      const user = await UserInvite.findOne({ where: { code: friendUrl } });
+      if (user) {
+        if (!Array.isArray(user.friendsId)) {
+          user.friendsId = [];
+        }
+        user.friendsId.push(chatId);
+        const saveResult = await user.save();
+        console.log("Друг добавлен:", saveResult);
+      } else {
+        console.error("Пользователь не найден");
       }
-
-      user.friendsId.push(chatId);
-      await user.save();
-      console.log("Друг добавлен");
-    } else {
-      console.error("Пользователь не найден");
     }
+  } catch (error) {
+    console.error("Ошибка:", error);
   }
 };
 
-/* createUser(
+createUser(
   "1234321",
   "",
   "",
   "test",
   "",
   "aedbb335-473b-439d-9ec2-860fc46ebea5"
-); */
+);
 
 module.exports = createUser;
