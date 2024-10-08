@@ -178,8 +178,8 @@ app.post("/user/reg", async (req, res) => {
       friendUrl
     );
 
-    user = await User.findOne({ where: { chatId: chtId } });
-    res.status(201).json(user);
+    const userFin = await User.findOne({ where: { chatId: chtId } });
+    res.json(userFin);
 
     console.log(`Закончен поиск`);
   } catch (error) {
