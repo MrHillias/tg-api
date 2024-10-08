@@ -74,8 +74,12 @@ const createUser = async (
     if (friendUrl !== "") {
       const user = await UserInvite.findOne({ where: { code: friendUrl } });
       if (user) {
-        if (!Array.isArray(user.friendsId)) {
-          user.friendsId = [];
+        try {
+          if (!Array.isArray(user.friendsId)) {
+            user.friendsId = [];
+          }
+        } catch (error) {
+          console.error("Ошибка при проверке массива:", error);
         }
         user.friendsId.push(chatId);
         const saveResult = await user.save();
@@ -89,13 +93,13 @@ const createUser = async (
   }
 };
 
-/* createUser(
-  "1234321",
+createUser(
+  "123432",
   "",
   "",
   "test",
   "",
-  "aedbb335-473b-439d-9ec2-860fc46ebea5"
-); */
+  "2a9d68e7-48ea-482f-9857-4e0b3616b828"
+);
 
 module.exports = createUser;

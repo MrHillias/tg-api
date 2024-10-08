@@ -169,9 +169,16 @@ app.post("/user/reg", async (req, res) => {
     const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
     console.log(chtId, name, lastname, username, avatarUrl, friendUrl);
-    await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
+    const user = await createUser(
+      chtId,
+      name,
+      lastname,
+      username,
+      avatarUrl,
+      friendUrl
+    );
 
-    res.status(201).json({ message: "Юзер успешно создан!" });
+    res.status(201).json(user);
 
     console.log(`Закончен поиск`);
   } catch (error) {
