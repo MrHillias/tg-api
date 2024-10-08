@@ -106,7 +106,7 @@ app.get("/users/:chatId", async (req, res) => {
       }
       res.json(user);
     } else {
-      res.status.json({ error: "false" });
+      res.status.json({ error: "chatId: 0" });
     }
   } catch (error) {
     res.status(500).json({ error: "Ошибка при поиске пользователя" });
