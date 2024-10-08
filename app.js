@@ -260,7 +260,10 @@ app.get("/invites/:chatId", async (req, res) => {
       where: { chatId: req.params.chatId },
     });
     if (user) {
-      return res.json(user.inviteLink);
+      console.log("Invite Link:", user.inviteLink); // Логируем inviteLink
+      return res.json({ inviteLink: user.inviteLink }); // Возвращаем объект с inviteLink
+    } else {
+      return res.status(404).json({ error: "Пользователь не найден" });
     }
   } catch (error) {
     return res.status(500).json({ error: "Ошибка при поиске пользователя" });
