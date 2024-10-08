@@ -81,9 +81,10 @@ const createUser = async (
         } catch (error) {
           console.error("Ошибка при проверке массива:", error);
         }
-        user.friendsId.push(chatId);
+        user.friendsId.unshift(chatId);
         const saveResult = await user.save();
-        console.log("Друг добавлен:", saveResult);
+        //console.log("Друг добавлен:", saveResult);
+        console.log("Друг добавлен:");
       } else {
         console.error("Пользователь не найден");
       }
@@ -93,13 +94,6 @@ const createUser = async (
   }
 };
 
-/* createUser(
-  "123432",
-  "",
-  "",
-  "test",
-  "",
-  "2a9d68e7-48ea-482f-9857-4e0b3616b828"
-); */
+//createUser("1234321", "", "", "test", "", "04dc220d-675e-428c-b316-9c3a2734a1e0");
 
 module.exports = createUser;
