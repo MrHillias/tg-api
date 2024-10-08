@@ -178,6 +178,7 @@ app.post("/user/reg", async (req, res) => {
       friendUrl
     );
 
+    user = await User.findOne({ where: { chatId: chtId } });
     res.status(201).json(user);
 
     console.log(`Закончен поиск`);
