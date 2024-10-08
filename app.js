@@ -168,11 +168,19 @@ app.get("/friends/:chatId", async (req, res) => {
     const user = await UserInvite.findOne({
       where: { chatId: req.params.chatId },
     });
-    if (user && user.friendsId) {
-      const friends = user.frindsId;
-      console.log(friends);
-      res.json(friends);
+    if (!user) {
+      console.log("Пользователь не найден");
+      return res.status(404).json({ message: "Пользователь не найден" });
     }
+
+    if (!user.friendsId) {
+      console.log("friendsId пустой");
+      return res.json([]);
+    }
+
+    const friends = user.friendsId; // Исправлено здесь
+    console.log(friends);
+    res.json(friends);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
