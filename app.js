@@ -180,7 +180,13 @@ app.get("/friends/:chatId", async (req, res) => {
 
     const friends = user.friendsId; // Исправлено здесь
     console.log(friends);
-    res.json(friends);
+
+    const results = await Promise.all(
+      friends.map(async (currentFriend) => {
+        return await User.findOne({ where: { chatId: currentFriend } });
+      })
+    );
+    res.json(results);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
