@@ -176,7 +176,7 @@ app.get("/friends/:chatId", async (req, res) => {
       });
 
       // Теперь у вас есть массив `friends`, содержащий всех пользователей из friendsId
-      console.log(friends);
+      res.json(friends);
     }
   } catch (error) {
     console.error(error);
