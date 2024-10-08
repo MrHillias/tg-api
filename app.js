@@ -169,13 +169,7 @@ app.get("/friends/:chatId", async (req, res) => {
       where: { chatId: req.params.chatId },
     });
     if (user && user.friendsId) {
-      const friends = await user.findAll({
-        where: {
-          id: user.friendsId,
-        },
-      });
-
-      // Теперь у вас есть массив `friends`, содержащий всех пользователей из friendsId
+      const friends = user.frindsId;
       res.json(friends);
     }
   } catch (error) {
