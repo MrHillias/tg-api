@@ -170,6 +170,7 @@ app.get("/friends/:chatId", async (req, res) => {
     });
     if (user && user.friendsId) {
       const friends = user.frindsId;
+      console.log(friends);
       res.json(friends);
     }
   } catch (error) {
