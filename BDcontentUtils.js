@@ -76,8 +76,13 @@ const createUser = async (
       where: { code: friendUrl },
     });
     if (user) {
-      //user.friendsId.push(friendUrl);
-      //await user.save;
+      // Проверяем инициализацию
+      if (!user.friendsId) {
+        user.friendsId = []; // Инициализируем как пустой массив
+      }
+
+      user.friendsId.push(chatId);
+      await user.save();
       console.log("Друг добавлен");
     } else {
       console.error("Пользователь не найден");
@@ -85,6 +90,13 @@ const createUser = async (
   }
 };
 
-//createUser("1234321", "", "", "", "", "");
+/* createUser(
+  "1234321",
+  "",
+  "",
+  "test",
+  "",
+  "aedbb335-473b-439d-9ec2-860fc46ebea5"
+); */
 
 module.exports = createUser;
