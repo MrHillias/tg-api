@@ -83,8 +83,8 @@ const createUser = async (
         }
         user.friendsId = [...user.friendsId, chatId];
         const saveResult = await user.save();
-        //console.log("Друг добавлен:", saveResult);
-        console.log("Друг добавлен:");
+        console.log("Друг добавлен:", saveResult);
+        //console.log("Друг добавлен:");
       } else {
         console.error("Пользователь не найден");
       }
