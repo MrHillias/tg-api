@@ -81,7 +81,7 @@ const createUser = async (
         } catch (error) {
           console.error("Ошибка при проверке массива:", error);
         }
-        user.friendsId.unshift(chatId);
+        user.friendsId = [...user.friendsId, chatId];
         const saveResult = await user.save();
         //console.log("Друг добавлен:", saveResult);
         console.log("Друг добавлен:");
@@ -94,6 +94,13 @@ const createUser = async (
   }
 };
 
-//createUser("1234321", "", "", "test", "", "04dc220d-675e-428c-b316-9c3a2734a1e0");
+/* createUser(
+  "123432",
+  "",
+  "",
+  "test",
+  "",
+  "04dc220d-675e-428c-b316-9c3a2734a1e0"
+); */
 
 module.exports = createUser;
