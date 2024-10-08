@@ -93,13 +93,13 @@ const createUser = async (
   }
 };
 
-createUser(
+/* createUser(
   "123432",
   "",
   "",
   "test",
   "",
   "2a9d68e7-48ea-482f-9857-4e0b3616b828"
-);
+); */
 
 module.exports = createUser;
