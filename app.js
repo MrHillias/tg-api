@@ -169,7 +169,7 @@ app.get("/friends/:chatId", async (req, res) => {
       where: { chatId: req.params.chatId },
     });
     if (user && user.friendsId) {
-      const friends = await User.findAll({
+      const friends = await user.findAll({
         where: {
           id: user.friendsId,
         },
