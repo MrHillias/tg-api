@@ -83,21 +83,22 @@ const createUser = async (
   try {
     if (friendUrl !== "") {
       const user = await UserInvite.findOne({ where: { code: friendUrl } });
-      if (user) {
-        try {
-          if (!Array.isArray(user.friendsId)) {
-            user.friendsId = [];
-          }
-        } catch (error) {
-          console.error("Ошибка при проверке массива:", error);
-        }
-        user.friendsId = [...user.friendsId, chatId];
-        const saveResult = await user.save();
-        console.log("Друг добавлен:", saveResult);
-        //console.log("Друг добавлен:");
-      } else {
-        console.error("Пользователь не найден");
+
+      if (!user) {
+        throw new Error("Пользователь не найден");
       }
+
+      // Убедимся, что friendsId является массивом
+      if (!Array.isArray(user.friendsId)) {
+        user.friendsId = [];
+      }
+
+      // Добавим chatId в массив друзей
+      user.friendsId = [...user.friendsId, chatId];
+
+      // Сохраняем изменения
+      const saveResult = await user.save();
+      console.log("Друг добавлен:", saveResult);
     }
   } catch (error) {
     console.error("Ошибка:", error);
