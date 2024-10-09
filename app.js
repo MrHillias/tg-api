@@ -142,6 +142,7 @@ app.put("/users/:chatId", async (req, res) => {
     currentStreak,
     updatedToday,
     totalFarm,
+    rewardsUpdated,
   } = req.body;
 
   try {
@@ -159,6 +160,7 @@ app.put("/users/:chatId", async (req, res) => {
         currentStreak,
         updatedToday,
         totalFarm,
+        rewardsUpdated,
       });
       res.json(user);
     } else {
