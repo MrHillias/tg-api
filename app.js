@@ -90,11 +90,11 @@ app.get("/users/:chatId", async (req, res) => {
     const user = await User.findOne({ where: { chatId: req.params.chatId } });
     if (user) {
       const eventDateStr = user.lastTimeGamesAdded;
-      // Проверяем, если eventDateStr равен null, задаем текущее время
-      if (!eventDateStr) {
-        user.lastTimeGamesAdded = new Date();
-        user.lastTimeRewardsAdded = new Date();
-        user.hoursPassed = 0;
+      const eventHourStr = user.lastTimeRewardsAdded;
+      // Проверяем, если eventDateStr или eventHourStr равен null, задаем текущее время
+      if (!eventDateStr || !eventHourStr) {
+        if (!eventDateStr) user.lastTimeGamesAdded = new Date();
+        else user.lastTimeRewardsAdded = new Date();
         await user.save();
       } else {
         const hoursSinceEvent = has24HoursPassed(eventDateStr);
