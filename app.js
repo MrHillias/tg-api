@@ -93,14 +93,31 @@ app.get("/users/:chatId", async (req, res) => {
       // Проверяем, если eventDateStr равен null, задаем текущее время
       if (!eventDateStr) {
         user.lastTimeGamesAdded = new Date();
+        user.lastTimeRewardsAdded = new Date();
         user.hoursPassed = 0;
         await user.save();
       } else {
-        const hoursPassed = has24HoursPassed(eventDateStr);
-        console.log(`hours passed = ` + hoursPassed);
-        if (hoursPassed >= 24 && user.updatedToday) {
+        const hoursSinceEvent = has24HoursPassed(eventDateStr);
+        const hoursSinceRewards = has24HoursPassed(user.lastTimeRewardsAdded);
+
+        let shouldSave = false;
+
+        // Проверяем условие обновления времени события
+        if (hoursSinceEvent >= 24 && user.updatedToday) {
           user.updatedToday = false;
           console.log(`updatedToday`);
+          shouldSave = true;
+        }
+
+        // Проверяем условие обновления наград
+        if (hoursSinceRewards >= 8 && user.rewardsUpdated) {
+          user.rewardsUpdated = false;
+          console.log(`rewardsUpdated`);
+          shouldSave = true;
+        }
+
+        // Сохраняем объект пользователя, если это необходимо
+        if (shouldSave) {
           await user.save();
         }
       }

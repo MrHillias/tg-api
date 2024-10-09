@@ -32,6 +32,9 @@ const createUser = async (
     if (lastName !== "") {
       userInfo.lastname = lastName;
     }
+    if (username !== "") {
+      userInfo.username = username;
+    }
     await userInfo.save();
 
     console.log("Юзер добавлен:", userInfo);
