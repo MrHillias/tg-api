@@ -1,4 +1,5 @@
 /node_modules
 /TaskManagement.js
 /DeleteUserByID.js
+/CreateUserByID.js
 .idea

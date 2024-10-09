@@ -26,8 +26,12 @@ const createUser = async (
       avatarUrl,
     });
 
-    userInfo.firstname = firstName;
-    userInfo.lastname = lastName;
+    if (firstName !== "") {
+      userInfo.firstname = firstName;
+    }
+    if (lastName !== "") {
+      userInfo.lastname = lastName;
+    }
     await userInfo.save();
 
     console.log("Юзер добавлен:", userInfo);
@@ -99,14 +103,5 @@ const createUser = async (
     console.error("Ошибка:", error);
   }
 };
-
-/* createUser(
-  "123432",
-  "",
-  "",
-  "onlyUsername",
-  "",
-  "c2acddf6-2c6f-4213-a3db-80796e56046b"
-); */
 
 module.exports = createUser;

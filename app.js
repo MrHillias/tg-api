@@ -223,6 +223,7 @@ app.get("/", (req, res) => {
   res.send("API раб отает!");
 });
 
+//Endpoint для получения ссылки на приглашение
 app.get("/invites/:chatId", async (req, res) => {
   try {
     const user = await UserInvite.findOne({
