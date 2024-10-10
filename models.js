@@ -17,6 +17,7 @@ const User = sequelize.define("user", {
   rewardsUpdated: { type: DataTypes.BOOLEAN, defaultValue: false },
   updatedToday: { type: DataTypes.BOOLEAN, defaultValue: false },
   totalFarm: { type: DataTypes.INTEGER, defaultValue: 0 },
+  farmPoints: { type: DataTypes.INTEGER, defaultValue: 0 },
 });
 
 module.exports = User;
