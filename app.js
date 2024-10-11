@@ -235,7 +235,7 @@ app.post("/user/reg", async (req, res) => {
     );
 
     console.log("Поиск юзера");
-    const userFin = await User.findOne({ where: { chatId: chtId } });
+    const userFin = await User.findOne({ where: { chatId: req.params.chtId } });
     console.log(userFin);
     res.json(userFin);
 
