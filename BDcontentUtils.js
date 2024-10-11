@@ -25,7 +25,7 @@ const createUser = async (
       username: username,
       avatar: avatarUrl,
     });
-    /* 
+
     if (firstName !== "") {
       userInfo.firstname = firstName;
     }
@@ -38,7 +38,7 @@ const createUser = async (
     if (avatarUrl !== "") {
       userInfo.avatar = avatarUrl;
     }
-    await userInfo.save(); */
+    await userInfo.save();
 
     console.log("Юзер добавлен:", userInfo);
   } catch (error) {
