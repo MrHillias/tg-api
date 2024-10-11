@@ -227,12 +227,12 @@ app.post("/user/reg", async (req, res) => {
     console.log(chtId, name, lastname, username, avatarUrl, friendUrl);
     await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
 
-    console.log("Поиск юзера " + chtId);
-    const userFin = await User.findOne({ where: { chatId: chtId } });
-    console.log(userFin);
-    res.json(userFin);
+    //console.log("Поиск юзера " + chtId);
+    //const userFin = await User.findOne({ where: { chatId: chtId } });
+    //console.log(userFin);
+    res.json(chtId, name, lastname, username, avatarUrl, friendUrl);
 
-    console.log(`Закончен поиск`);
+    //console.log(`Закончен поиск`);
   } catch (error) {
     res.status(500).json({ error: "Ошибка при создании юзера" });
   }
