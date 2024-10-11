@@ -225,14 +225,7 @@ app.post("/user/reg", async (req, res) => {
     const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
     console.log(chtId, name, lastname, username, avatarUrl, friendUrl);
-    const user = await createUser(
-      chtId,
-      name,
-      lastname,
-      username,
-      avatarUrl,
-      friendUrl
-    );
+    await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
 
     console.log("Поиск юзера " + chtId);
     const userFin = await User.findOne({ where: { chatId: chtId } });
