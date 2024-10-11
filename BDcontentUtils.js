@@ -19,13 +19,13 @@ const createUser = async (
 ) => {
   try {
     const userInfo = await UserModel.create({
-      chatId,
-      firstName,
-      lastName,
-      username,
-      avatarUrl,
+      chatId: chatId,
+      firstname: firstName,
+      lastname: lastName,
+      username: username,
+      avatar: avatarUrl,
     });
-
+    /* 
     if (firstName !== "") {
       userInfo.firstname = firstName;
     }
@@ -35,7 +35,10 @@ const createUser = async (
     if (username !== "") {
       userInfo.username = username;
     }
-    await userInfo.save();
+    if (avatarUrl !== "") {
+      userInfo.avatar = avatarUrl;
+    }
+    await userInfo.save(); */
 
     console.log("Юзер добавлен:", userInfo);
   } catch (error) {
