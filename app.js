@@ -230,7 +230,7 @@ app.post("/user/reg", async (req, res) => {
     console.log("Поиск юзера " + chatId);
     const userFin = await User.findOne({ where: { chatId: chatId } });
     console.log(userFin);
-    res.json({ chatId, name, lastname, username, avatarUrl, friendUrl });
+    res.json(userFin);
 
     //console.log(`Закончен поиск`);
   } catch (error) {
