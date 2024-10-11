@@ -222,15 +222,15 @@ app.get("/friends/:chatId", async (req, res) => {
 app.post("/user/reg", async (req, res) => {
   try {
     console.log(`Начат поиск`);
-    const { chtId, name, lastname, username, avatarUrl, friendUrl } = req.body;
+    const { chatId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
-    console.log(chtId, name, lastname, username, avatarUrl, friendUrl);
-    await createUser(chtId, name, lastname, username, avatarUrl, friendUrl);
+    console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
+    await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
 
-    //console.log("Поиск юзера " + chtId);
-    //const userFin = await User.findOne({ where: { chatId: chtId } });
-    //console.log(userFin);
-    res.json({ chtId, name, lastname, username, avatarUrl, friendUrl });
+    console.log("Поиск юзера " + chatId);
+    const userFin = await User.findOne({ where: { chatId: chatId } });
+    console.log(userFin);
+    res.json({ chatId, name, lastname, username, avatarUrl, friendUrl });
 
     //console.log(`Закончен поиск`);
   } catch (error) {
