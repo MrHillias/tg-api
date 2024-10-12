@@ -187,6 +187,17 @@ app.get("/users", async (req, res) => {
   }
 });
 
+// Endpoint для получения серверного времени
+app.get("/time", async (req, res) => {
+  try {
+    const serverTime = new Date();
+    res.json({ serverTime: serverTime.toISOString() });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
 // Endpoint для получения друзей
 app.get("/friends/:chatId", async (req, res) => {
   try {
