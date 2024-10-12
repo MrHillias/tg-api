@@ -205,10 +205,23 @@ app.get("/time/:chatId", async (req, res) => {
   try {
     const eventHourStr = user.lastTimeRewardsAdded;
     const curDate = new Date();
+
+    // Преобразуем eventHourStr в объект Date
+    const eventDate = new Date(eventHourStr);
+
+    // Преобразуем обе даты к UTC
+    const curDateUTC = new Date(curDate.toISOString());
+    const eventDateUTC = new Date(eventDate.toISOString());
+
     console.log(
-      "current time: " + curDate + "   ltRewardsAdded: " + eventHourStr
+      "current UTC time: " +
+        curDateUTC +
+        "   ltRewardsAdded UTC: " +
+        eventDateUTC
     );
-    res.json({ SecondsPased: exactMinutesPassed(eventHourStr) });
+
+    // Передаем UTC даты в вашу функцию
+    res.json({ SecondsPased: exactMinutesPassed(eventDateUTC) });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
