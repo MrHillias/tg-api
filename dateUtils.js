@@ -29,6 +29,9 @@ function exactMinutesPassed(eventDateStr) {
   const eventDate = new Date(eventDateStr);
   const currentDate = new Date();
 
+  console.log(
+    "current time: " + currentDate + "   ltRewardsAdded: " + eventDate
+  );
   // Вычисление разницы в миллисекундах
   const differenceInMilliseconds = currentDate - eventDate;
 

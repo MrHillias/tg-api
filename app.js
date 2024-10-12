@@ -205,9 +205,6 @@ app.get("/time/:chatId", async (req, res) => {
   try {
     const serverTime = new Date();
     const eventHourStr = user.lastTimeRewardsAdded;
-    console.log(
-      "current time: " + serverTime + "   ltRewardsAdded: " + eventHourStr
-    );
     res.json({ SecondsPased: exactMinutesPassed(eventHourStr) });
   } catch (error) {
     console.error(error);
