@@ -31,6 +31,7 @@ Task.belongsTo(UserTasks, {
 module.exports = { UserTasks, Task };
 
 const has24HoursPassed = require("./dateUtils");
+const exactMinutesPassed = require("./dateUtils");
 
 const checkSubscription = require("./subUtils");
 
@@ -192,6 +193,17 @@ app.get("/time", async (req, res) => {
   try {
     const serverTime = new Date();
     res.json({ serverTime: serverTime.toISOString() });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
+// Endpoint для получения серверного времени
+app.get("/time/:chatId", async (req, res) => {
+  try {
+    const eventHourStr = user.lastTimeRewardsAdded;
+    res.json({ SecondsPased: exactMinutesPassed(eventHourStr) });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
