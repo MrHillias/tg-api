@@ -3,14 +3,6 @@ const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 
-//Для ебки с часовыми поясами
-const { format, utcToZonedTime } = require("date-fns-tz");
-const chatTimeZones = {
-  123: "Europe/Moscow",
-  456: "America/New_York",
-  // Добавьте другие чаты и их временные зоны
-};
-
 //Основная дб
 const sequelize = require("./db");
 const User = require("./models");
