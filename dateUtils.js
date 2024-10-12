@@ -32,7 +32,7 @@ function exactMinutesPassed(eventDateStr) {
   // Вычисление разницы в миллисекундах
   const differenceInMilliseconds = currentDate - eventDate;
 
-  // Преобразование разницы в часы
+  // Преобразование разницы в секунды
   return (differenceInHours = Math.floor(differenceInMilliseconds / 1000));
 }
 
