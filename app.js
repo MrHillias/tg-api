@@ -214,7 +214,7 @@ app.get("/time/:chatId", async (req, res) => {
     // Переводим разницу в минуты
     const differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
     console.log("Diff: " + differenceInSeconds);
-    res.json({ minutesPassed: differenceInSeconds });
+    res.json({ secondsPasses: differenceInSeconds });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
