@@ -206,7 +206,7 @@ app.get("/time/:chatId", async (req, res) => {
     console.log(
       "currentTime: " + Date() + "   userTime:" + user.lastTimeRewardsAdded
     );
-    const diff = (Date() - user.lastTimeRewardsAdded) / 1000;
+    const diff = (Date() - Date(user.lastTimeRewardsAdded)) / 1000;
     console.log("Diff: " + diff);
     res.json({ minutesPassed: exactMinutesPassed(user.lastTimeRewardsAdded) });
   } catch (error) {
