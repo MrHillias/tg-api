@@ -211,19 +211,7 @@ app.get("/time", async (req, res) => {
 app.get("/time/:chatId", async (req, res) => {
   const user = await User.findOne({ where: { chatId: req.params.chatId } });
   try {
-    // Предполагается, что `user.lastTimeRewardsAdded` — это строка, представляющая дату.
-    const eventHourStr = user.lastTimeRewardsAdded;
-
-    // Преобразуем строку в объект Date, если это необходимо
-    const eventDate = new Date(eventHourStr);
-
-    // Получаем текущее время
-    const currentDate = new Date();
-
-    // Вычисляем разницу в минутах между текущим временем и временем события
-    const minutesDifference = differenceInMinutes(currentDate, eventDate);
-
-    console.log(`Разница во времени: ${minutesDifference} минут`);
+    res.json({ minutesPassed: exactMinutesPassed(user.lastTimeRewardsAdded) });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
