@@ -311,7 +311,7 @@ app.get("/invites/:chatId", async (req, res) => {
 app.get("/TaskCheck/Goida/:chatId", async (req, res) => {
   try {
     const userId = req.params.chatId;
-    const subbed = await checkSubscription(userId, "@hoochYou");
+    const subbed = await checkSubscription(userId, "@alldrivecrypto");
     if (subbed) {
       return res.send("Subbed");
     } else {
