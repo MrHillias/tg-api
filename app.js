@@ -206,9 +206,17 @@ app.get("/time/:chatId", async (req, res) => {
     console.log(
       "currentTime: " + Date() + "   userTime:" + user.lastTimeRewardsAdded
     );
-    const diff = (Date() - Date(user.lastTimeRewardsAdded)) / 1000;
-    console.log("Diff: " + diff);
-    res.json({ minutesPassed: exactMinutesPassed(user.lastTimeRewardsAdded) });
+    const currentTime = new Date();
+    const userTime = new Date(user.lastTimeRewardsAdded);
+
+    // Вычисляем разницу в миллисекундах
+    const differenceInMilliseconds = currentTime - userTime;
+    // Переводим разницу в минуты
+    const differenceInMinutes = Math.floor(
+      differenceInMilliseconds / (1000 * 60)
+    );
+    console.log("Diff: " + differenceInMinutes);
+    res.json({ minutesPassed: differenceInMinutes });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
