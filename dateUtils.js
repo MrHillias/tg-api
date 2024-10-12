@@ -26,7 +26,14 @@ function has24HoursPassed(eventDateStr) {
 
 // Функция для проверки, прошло ли 24 часа с eventDate
 function exactMinutesPassed(eventDateStr) {
-  const eventDate = new Date(eventDateStr);
+  // Создание объекта Date из строки (если это возможно)
+  const initieventDateStralDate = new Date(
+    initialDateStr.replace(" ", "T") + "Z"
+  );
+
+  // Преобразование в формат ISO
+  const eventDate = eventDateStr.toISOString();
+  //const eventDate = new Date(eventDateStr);
   const currentDate = new Date();
 
   console.log(
