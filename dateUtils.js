@@ -33,9 +33,7 @@ function exactMinutesPassed(eventDateStr) {
   const differenceInMilliseconds = currentDate - eventDate;
 
   // Преобразование разницы в часы
-  return (differenceInHours = Math.floor(
-    differenceInMilliseconds / (1000 * 60)
-  ));
+  return (differenceInHours = Math.floor(differenceInMilliseconds / 1000));
 }
 
 module.exports = exactMinutesPassed;
