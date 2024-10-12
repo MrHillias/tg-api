@@ -3,6 +3,14 @@ const bodyParser = require("body-parser");
 const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 
+//Для ебки с часовыми поясами
+const { format, utcToZonedTime } = require("date-fns-tz");
+const chatTimeZones = {
+  123: "Europe/Moscow",
+  456: "America/New_York",
+  // Добавьте другие чаты и их временные зоны
+};
+
 //Основная дб
 const sequelize = require("./db");
 const User = require("./models");
@@ -203,25 +211,19 @@ app.get("/time", async (req, res) => {
 app.get("/time/:chatId", async (req, res) => {
   const user = await User.findOne({ where: { chatId: req.params.chatId } });
   try {
+    // Предполагается, что `user.lastTimeRewardsAdded` — это строка, представляющая дату.
     const eventHourStr = user.lastTimeRewardsAdded;
-    const curDate = new Date();
 
-    // Преобразуем eventHourStr в объект Date
+    // Преобразуем строку в объект Date, если это необходимо
     const eventDate = new Date(eventHourStr);
 
-    // Преобразуем обе даты к UTC
-    const curDateUTC = new Date(curDate.toISOString());
-    const eventDateUTC = new Date(eventDate.toISOString());
+    // Получаем текущее время
+    const currentDate = new Date();
 
-    console.log(
-      "current UTC time: " +
-        curDateUTC +
-        "   ltRewardsAdded UTC: " +
-        eventDateUTC
-    );
+    // Вычисляем разницу в минутах между текущим временем и временем события
+    const minutesDifference = differenceInMinutes(currentDate, eventDate);
 
-    // Передаем UTC даты в вашу функцию
-    res.json({ SecondsPased: exactMinutesPassed(eventDateUTC) });
+    console.log(`Разница во времени: ${minutesDifference} минут`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
