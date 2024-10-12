@@ -203,6 +203,9 @@ app.get("/time", async (req, res) => {
 app.get("/time/:chatId", async (req, res) => {
   const user = await User.findOne({ where: { chatId: req.params.chatId } });
   try {
+    console.log(
+      "currentTime: " + Date() + "   userTime:" + user.lastTimeRewardsAdded
+    );
     res.json({ minutesPassed: exactMinutesPassed(user.lastTimeRewardsAdded) });
   } catch (error) {
     console.error(error);
