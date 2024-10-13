@@ -33,11 +33,10 @@ module.exports = { UserTasks, Task };
 const has24HoursPassed = require("./dateUtils");
 const exactMinutesPassed = require("./dateUtils");
 
-const buttonCreate = require("./StartButtonCreate");
-
 const checkSubscription = require("./subUtils");
 
 const start = require("./botStart");
+const sendButtons = require("./botStart");
 
 const createUser = require("./BDcontentUtils");
 
@@ -263,6 +262,7 @@ app.post("/user/reg", async (req, res) => {
     console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
     await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
 
+    sendButtons(chatId, name, username, avatarUrl);
     //await buttonCreate(chatId, firstname, username, avatar);
 
     console.log("Поиск юзера " + chatId);
