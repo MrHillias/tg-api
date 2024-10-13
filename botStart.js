@@ -72,8 +72,12 @@ const start = async () => {
         inline_keyboard: [
           [
             {
-              text: "Играть!",
+              text: "Play!",
               web_app: { url: gameUrl },
+            },
+            {
+              text: "Join the community!",
+              web_app: { url: "https://t.me/alldrivecrypto" },
             },
           ],
         ],
