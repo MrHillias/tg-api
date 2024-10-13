@@ -258,10 +258,10 @@ app.get("/friends/:chatId", async (req, res) => {
 app.post("/user/reg", async (req, res) => {
   try {
     console.log(`Начат поиск`);
-    const { chatId, name, lastname, username, avatar, friendUrl } = req.body;
+    const { chatId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
-    console.log(chatId, name, lastname, username, avatar, friendUrl);
-    await createUser(chatId, name, lastname, username, avatar, friendUrl);
+    console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
+    await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
 
     //await buttonCreate(chatId, firstname, username, avatar);
 
