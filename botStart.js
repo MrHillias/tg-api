@@ -83,15 +83,13 @@ const start = async () => {
 
   // Обработчик команды /start
   bot.onText(/\/start (.+)/, async (msg) => {
-    console.log("Received /start command:", msg); // Выводим сообщение в консоль
+    console.log("Перешли по ссылке", msg); // Выводим сообщение в консоль
 
     const chatId = msg.chat.id;
     const firstName = msg.from.first_name || "";
-    const lastName = msg.from.last_name || "";
     const username = msg.from.username || "";
 
     let avatar = "";
-    let ref = "";
 
     // Получение аватарки пользователя
     try {
@@ -105,11 +103,6 @@ const start = async () => {
       }
     } catch (error) {
       console.error("Error getting user profile photos:", error);
-    }
-    try {
-      await createUser(chatId, firstName, lastName, username, avatar, ref);
-    } catch (error) {
-      console.error("Пользователь уже создан", error);
     }
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
       firstName
@@ -128,6 +121,8 @@ const start = async () => {
   Have friends? Invite them along! The more, the merrier! 🌱
   
   Keep in mind: Drive is where speed rules and limitless opportunities await!`;
+
+      console.log("Создаем кнопари"); // Выводим сообщение в консоль
       const options = {
         reply_markup: {
           inline_keyboard: [
