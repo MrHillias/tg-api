@@ -10,7 +10,7 @@ module.exports = { UserTasks, Task };
 const { v4: uuidv4 } = require("uuid");
 
 const updateButtons = async (chatId) => {
-  const user = await User.findOne({ where: { chatId: req.params.chatId } });
+  const user = await User.findOne({ where: { chatId: chatId } });
   user.recievedButtons = true;
   user.save();
 };
