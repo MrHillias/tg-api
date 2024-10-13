@@ -38,11 +38,7 @@ const start = async () => {
     } catch (error) {
       console.error("Пользователь уже создан", error);
     }
-    try {
-      sendButtons(chatId, firstname, username, avatar);
-    } catch (error) {
-      console.error("Не получается создать кнопки", error);
-    }
+    sendButtons(chatId, firstname, username, avatar);
   });
 };
 
