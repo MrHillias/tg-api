@@ -46,23 +46,28 @@ const start = async () => {
 
     console.log("Game URL:", gameUrl); // Для отладки
 
-    // Отправляем сообщение с кнопкой для запуска игры
-    bot.sendMessage(chatId, "Запустить игру", {
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: "Play!",
-              web_app: { url: gameUrl },
-            },
-            {
-              text: "Join the community!",
-              web_app: { url: "https://t.me/alldrivecrypto" },
-            },
+    try {
+      console.log("Начинаем создавать кнопку");
+      // Отправляем сообщение с кнопкой для запуска игры
+      bot.sendMessage(chatId, "Запустить игру", {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Play!",
+                web_app: { url: gameUrl },
+              },
+              {
+                text: "Join the community!",
+                web_app: { url: "https://t.me/alldrivecrypto" },
+              },
+            ],
           ],
-        ],
-      },
-    });
+        },
+      });
+    } catch (error) {
+      console.log("Ошибка при создании кнопки: ", error);
+    }
   });
 };
 
