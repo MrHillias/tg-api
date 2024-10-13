@@ -258,12 +258,12 @@ app.get("/friends/:chatId", async (req, res) => {
 app.post("/user/reg", async (req, res) => {
   try {
     console.log(`Начат поиск`);
-    const { chatId, name, lastname, username, avatarUrl, friendUrl } = req.body;
+    const { chatId, name, lastname, username, avatar, friendUrl } = req.body;
 
-    console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
-    await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
+    console.log(chatId, name, lastname, username, avatar, friendUrl);
+    await createUser(chatId, name, lastname, username, avatar, friendUrl);
 
-    await buttonCreate(chatId, firstname, username, avatarUrl);
+    await buttonCreate(chatId, firstname, username, avatar);
 
     console.log("Поиск юзера " + chatId);
     const userFin = await User.findOne({ where: { chatId: chatId } });
