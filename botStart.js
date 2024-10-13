@@ -46,6 +46,9 @@ const start = async () => {
       );
     } catch (error) {
       console.error("Пользователь уже создан", error);
+      const user = await User.findOne({ where: { chatId: chatId } });
+      user.recievedButtons = true;
+      user.save();
     }
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
       firstName
