@@ -61,7 +61,7 @@ const start = async () => {
         inline_keyboard: [
           [
             {
-              text: "Subscribe to drive channel!",
+              text: "Subscribe to Drive!",
               url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш первый канал
             },
           ],
@@ -74,6 +74,9 @@ const start = async () => {
         ],
       },
     };
+
+    // Отправьте сообщение с кнопками
+    bot.sendMessage(chatId, messageText, options);
   });
 };
 
