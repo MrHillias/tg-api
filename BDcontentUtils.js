@@ -10,10 +10,10 @@ module.exports = { UserTasks, Task };
 const { v4: uuidv4 } = require("uuid");
 
 const updateButtons = async (chatId) => {
-  console.log(chatId + " нажал на /start");
   const user = await UserModel.findOne({ where: { chatId: chatId } });
   user.recievedButtons = true;
   await user.save();
+  console.log(user);
 };
 
 const createUser = async (
