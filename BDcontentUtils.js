@@ -40,6 +40,7 @@ const createUser = async (
       userInfo.avatar = avatarUrl;
     }
     if (buttonsAreCreated) {
+      console.log("Кнопки учтены");
       userInfo.recievedButtons = true;
     }
     await userInfo.save();
