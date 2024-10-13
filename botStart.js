@@ -46,7 +46,7 @@ const start = async () => {
 
     console.log("Game URL:", gameUrl); // Для отладки
 
-    try {
+    /*  try {
       console.log("Начинаем создавать кнопку");
       const options = {
         reply_markup: {
@@ -81,7 +81,27 @@ const start = async () => {
       });
     } catch (error) {
       console.log("Ошибка при создании кнопки: ", error);
-    }
+    } */
+    // Создайте кнопки
+    const options = {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: "Subscribe to drive channel!",
+              url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш первый канал
+            },
+            {
+              text: "Play!",
+              web_app: { url: gameUrl }, // Укажите ссылку на ваш второй канал
+            },
+          ],
+        ],
+      },
+    };
+
+    // Отправьте сообщение с кнопками
+    bot.sendMessage(chatId, "Добро пожаловать в D-R-I-V-E:", options);
   });
 };
 
