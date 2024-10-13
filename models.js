@@ -18,6 +18,7 @@ const User = sequelize.define("user", {
   updatedToday: { type: DataTypes.BOOLEAN, defaultValue: false },
   totalFarm: { type: DataTypes.INTEGER, defaultValue: 0 },
   farmPoints: { type: DataTypes.DOUBLE, defaultValue: 0 },
+  recievedButtons: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
 module.exports = User;

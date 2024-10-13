@@ -160,6 +160,7 @@ app.put("/users/:chatId", async (req, res) => {
     totalFarm,
     rewardsUpdated,
     farmPoints,
+    recievedButtons,
   } = req.body;
 
   try {
@@ -180,6 +181,7 @@ app.put("/users/:chatId", async (req, res) => {
         totalFarm,
         rewardsUpdated,
         farmPoints,
+        recievedButtons,
       });
       res.json(user);
     } else {
@@ -272,8 +274,17 @@ app.post("/user/reg", async (req, res) => {
     console.log(`Начат поиск`);
     const { chatId, name, lastname, username, avatarUrl, friendUrl } = req.body;
 
+    const buttonsAreCreated = false;
     console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
-    await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
+    await createUser(
+      chatId,
+      name,
+      lastname,
+      username,
+      avatarUrl,
+      friendUrl,
+      buttonsAreCreated
+    );
 
     //sendButtons(chatId, name, username, avatarUrl);
     //await buttonCreate(chatId, firstname, username, avatar);

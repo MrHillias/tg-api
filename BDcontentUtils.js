@@ -15,7 +15,8 @@ const createUser = async (
   lastName,
   username,
   avatarUrl,
-  friendUrl
+  friendUrl,
+  buttonsAreCreated
 ) => {
   try {
     const userInfo = await UserModel.create({
@@ -37,6 +38,9 @@ const createUser = async (
     }
     if (avatarUrl !== "") {
       userInfo.avatar = avatarUrl;
+    }
+    if (buttonsAreCreated) {
+      userInfo.recievedButtons = true;
     }
     await userInfo.save();
 
