@@ -6,6 +6,7 @@ const bot = new tgBot(token, { polling: true });
 
 const createUser = require("./BDcontentUtils");
 const buttonCreate = require("./StartButtonCreate");
+const updateButtons = require("./BDcontentUtils");
 
 const start = async () => {
   // Команда /start
@@ -46,9 +47,7 @@ const start = async () => {
       );
     } catch (error) {
       console.error("Пользователь уже создан", error);
-      const user = await User.findOne({ where: { chatId: chatId } });
-      user.recievedButtons = true;
-      user.save();
+      updateButtons(chatId);
     }
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
       firstName
