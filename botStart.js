@@ -19,26 +19,6 @@ const start = async () => {
     let avatarUrl = "";
     let ref = "";
 
-    try {
-      // Получаем текст после /start
-      const ref = msg.text.split("=")[1].substring(4);
-
-      try {
-        console(ref);
-      } catch {
-        console("No msg text");
-      }
-
-      if (ref !== "") {
-        // Проверяем, если ref существует
-        if (ref) {
-          console.log(`Реферальный код: ${ref}`);
-        } else {
-          console.log("Реферальный код не был предоставлен.");
-        }
-      }
-    } catch (error) {}
-
     // Получение аватарки пользователя
     try {
       const profilePhotos = await bot.getUserProfilePhotos(msg.from.id);
