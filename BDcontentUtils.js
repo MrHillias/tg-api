@@ -12,8 +12,8 @@ const { v4: uuidv4 } = require("uuid");
 const updateButtons = async (chatId) => {
   const user = await UserModel.findOne({ where: { chatId: chatId } });
   user.recievedButtons = true;
+  console.log("Апдейт по кнопкам" + user);
   await user.save();
-  console.log(user);
 };
 
 const createUser = async (
