@@ -82,7 +82,14 @@ const start = async () => {
     } catch (error) {
       console.log("Ошибка при создании кнопки: ", error);
     } */
-    // Создайте кнопки
+    // Создайние кнопок
+    const messageText = `Hello from Drive! 🌟 Your ultimate app for gaming and earning tokens with friends! 📱
+
+We're excited to launch our new mini app on Telegram! Begin collecting points today, and who knows what exciting rewards you'll soon grab with them! 🚀
+
+Have friends? Invite them along! The more, the merrier! 🌱
+
+Keep in mind: Drive is where speed rules and limitless opportunities await!`;
     const options = {
       reply_markup: {
         inline_keyboard: [
@@ -103,7 +110,7 @@ const start = async () => {
     };
 
     // Отправьте сообщение с кнопками
-    bot.sendMessage(chatId, "Добро пожаловать в D-R-I-V-E:", options);
+    bot.sendMessage(chatId, messageText, options);
   });
 };
 
