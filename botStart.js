@@ -91,6 +91,8 @@ const start = async () => {
               text: "Subscribe to drive channel!",
               url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш первый канал
             },
+          ],
+          [
             {
               text: "Play!",
               web_app: { url: gameUrl }, // Укажите ссылку на ваш второй канал
