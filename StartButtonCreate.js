@@ -3,13 +3,12 @@ const tgBot = require("node-telegram-bot-api");
 const token = "7074926259:AAH3uW4oybN23rQt_eD9pCqGdapqWz3qtYI";
 
 const bot = new tgBot(token, { polling: true });
-
-function buttonCreate(chatId, firstName, username, avatarUrl) {
+const buttonCreate = async (chatId, firstName, username, avatar) => {
   // Формируем URL с параметрами пользователя
   const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
     firstName
   )}&username=${encodeURIComponent(username)}&avatarUrl=${encodeURIComponent(
-    avatarUrl
+    avatar
   )}`;
 
   console.log("Game URL:", gameUrl); // Для отладки
@@ -43,6 +42,6 @@ Keep in mind: Drive is where speed rules and limitless opportunities await!`;
 
   // Отправьте сообщение с кнопками
   bot.sendMessage(chatId, messageText, options);
-}
+};
 
 module.exports = buttonCreate;

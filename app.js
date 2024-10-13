@@ -263,7 +263,7 @@ app.post("/user/reg", async (req, res) => {
     console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
     await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
 
-    buttonCreate(chatId, firstname, username, avatarUrl);
+    await buttonCreate(chatId, firstname, username, avatarUrl);
 
     console.log("Поиск юзера " + chatId);
     const userFin = await User.findOne({ where: { chatId: chatId } });

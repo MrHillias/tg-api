@@ -17,7 +17,7 @@ const start = async () => {
     const lastName = msg.from.last_name || "";
     const username = msg.from.username || "";
 
-    let avatarUrl = "";
+    let avatar = "";
     let ref = "";
 
     // Получение аватарки пользователя
@@ -27,19 +27,19 @@ const start = async () => {
       if (profilePhotos.total_count > 0) {
         const photoId = profilePhotos.photos[0][0].file_id; // Берем первое фото
         const file = await bot.getFile(photoId);
-        avatarUrl = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
+        avatar = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
         //user.avatar += avatarUrl;
       }
     } catch (error) {
       console.error("Error getting user profile photos:", error);
     }
     try {
-      await createUser(chatId, firstName, lastName, username, avatarUrl, ref);
+      await createUser(chatId, firstName, lastName, username, avatar, ref);
     } catch (error) {
       console.error("Пользователь уже создан", error);
     }
 
-    buttonCreate(chatId, firstname, username, avatarUrl);
+    await buttonCreate(chatId, firstname, username, avatarUrl);
   });
 };
 
