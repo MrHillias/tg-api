@@ -262,7 +262,7 @@ app.post("/user/reg", async (req, res) => {
     console.log(chatId, name, lastname, username, avatarUrl, friendUrl);
     await createUser(chatId, name, lastname, username, avatarUrl, friendUrl);
 
-    sendButtons(chatId, name, username, avatarUrl);
+    //sendButtons(chatId, name, username, avatarUrl);
     //await buttonCreate(chatId, firstname, username, avatar);
 
     console.log("Поиск юзера " + chatId);
