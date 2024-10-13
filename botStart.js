@@ -39,7 +39,7 @@ const start = async () => {
       console.error("Пользователь уже создан", error);
     }
     try {
-      sendButtons(chatId, firstname, username, avatarUrl);
+      sendButtons(chatId, firstname, username, avatar);
     } catch (error) {
       console.error("Не получается создать кнопки", error);
     }
