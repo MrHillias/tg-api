@@ -13,7 +13,7 @@ const updateButtons = async (chatId) => {
   console.log(chatId + " нажал на /start");
   const user = await UserModel.findOne({ where: { chatId: chatId } });
   user.recievedButtons = true;
-  user.save();
+  await user.save();
 };
 
 const createUser = async (
