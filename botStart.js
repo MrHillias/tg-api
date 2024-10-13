@@ -46,8 +46,8 @@ const start = async () => {
         buttonsAreCreated
       );
     } catch (error) {
-      console.error("Пользователь уже создан", error);
       updateButtons(chatId);
+      console.error("Пользователь уже создан", error);
     }
     const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
       firstName
