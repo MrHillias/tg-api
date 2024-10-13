@@ -48,6 +48,24 @@ const start = async () => {
 
     try {
       console.log("Начинаем создавать кнопку");
+      const options = {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Перейти в канал",
+                url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш канал
+              },
+            ],
+          ],
+        },
+      };
+      // Отправьте сообщение с кнопкой
+      bot.sendMessage(
+        chatId,
+        "Нажмите кнопку ниже, чтобы перейти в канал:",
+        options
+      );
       // Отправляем сообщение с кнопкой для запуска игры
       bot.sendMessage(chatId, "Запустить игру", {
         reply_markup: {
@@ -56,10 +74,6 @@ const start = async () => {
               {
                 text: "Play!",
                 web_app: { url: gameUrl },
-              },
-              {
-                text: "Join the community!",
-                web_app: { url: "https://t.me/alldrivecrypto" },
               },
             ],
           ],
