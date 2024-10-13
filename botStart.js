@@ -44,41 +44,45 @@ const start = async () => {
       avatar
     )}`;
 
-    console.log("Game URL:", gameUrl); // Для отладки
+    try {
+      console.log("Game URL:", gameUrl); // Для отладки
 
-    // Создайние кнопок
-    const messageText = `Hello from Drive! 🌟 Your ultimate app for gaming and earning tokens with friends! 📱
+      // Создайние кнопок
+      const messageText = `Hello from Drive! 🌟 Your ultimate app for gaming and earning tokens with friends! 📱
     
     We're excited to launch our new mini app on Telegram! Begin collecting points today, and who knows what exciting rewards you'll soon grab with them! 🚀
     
     Have friends? Invite them along! The more, the merrier! 🌱
     
     Keep in mind: Drive is where speed rules and limitless opportunities await!`;
-    const options = {
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: "Subscribe to Drive!",
-              url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш первый канал
-            },
+      const options = {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Subscribe to Drive!",
+                url: "https://t.me/alldrivecrypto", // Укажите ссылку на ваш первый канал
+              },
+            ],
+            [
+              {
+                text: "Play!",
+                web_app: { url: gameUrl }, // Укажите ссылку на ваш второй канал
+              },
+            ],
           ],
-          [
-            {
-              text: "Play!",
-              web_app: { url: gameUrl }, // Укажите ссылку на ваш второй канал
-            },
-          ],
-        ],
-      },
-    };
+        },
+      };
 
-    // Отправьте сообщение с кнопками
-    bot.sendMessage(chatId, messageText, options);
+      // Отправьте сообщение с кнопками
+      bot.sendMessage(chatId, messageText, options);
+    } catch (error) {
+      console.log("Ошибка при создании кнопок: ", error);
+    }
   });
 };
 
-function sendButtons(chatId, firstName, username, avatar) {
+/* function sendButtons(chatId, firstName, username, avatar) {
   const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
     firstName
   )}&username=${encodeURIComponent(username)}&avatarUrl=${encodeURIComponent(
@@ -116,7 +120,7 @@ function sendButtons(chatId, firstName, username, avatar) {
 
   // Отправьте сообщение с кнопками
   bot.sendMessage(chatId, messageText, options);
-}
+} */
 
 module.exports = start;
-module.exports = sendButtons;
+//module.exports = sendButtons;
