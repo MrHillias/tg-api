@@ -2,7 +2,7 @@ const tgBot = require("node-telegram-bot-api");
 
 const token = "7074926259:AAH3uW4oybN23rQt_eD9pCqGdapqWz3qtYI";
 
-const bot = new tgBot(token, { polling: true });
+const bot = new tgBot(token);
 const buttonCreate = async (chatId, firstName, username, avatar) => {
   // Формируем URL с параметрами пользователя
   const gameUrl = `https://daniel-jacky.github.io/DriveProject/#/?chatId=${chatId}&firstName=${encodeURIComponent(
