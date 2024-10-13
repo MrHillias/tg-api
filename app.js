@@ -99,20 +99,33 @@ app.get("/users/:chatId", async (req, res) => {
         else user.lastTimeRewardsAdded = new Date();
         await user.save();
       } else {
-        const hoursSinceEvent = has24HoursPassed(eventDateStr);
-        const hoursSinceRewards = has24HoursPassed(user.lastTimeRewardsAdded);
+        const currentTime = new Date();
+        const userTimeGames = new Date(user.lastTimeGamessAdded);
+        const userTimeRewards = new Date(user.lastTimeRewardsAdded);
+
+        // Вычисляем разницу в миллисекундах
+        const differenceInMillisecondsForGames = currentTime - userTimeGames;
+        const differenceInMillisecondsForRewards =
+          currentTime - userTimeRewards;
+        // Переводим разницу в часы
+        const differenceInHoursGames = Math.floor(
+          differenceInMillisecondsForGames / (1000 * 60 * 60)
+        );
+        const differenceInHoursRewards = Math.floor(
+          differenceInMillisecondsForRewards / (1000 * 60 * 60)
+        );
 
         let shouldSave = false;
 
         // Проверяем условие обновления времени события
-        if (hoursSinceEvent >= 24 && user.updatedToday) {
+        if (differenceInHoursGames >= 24 && user.updatedToday) {
           user.updatedToday = false;
           console.log(`updatedToday`);
           shouldSave = true;
         }
 
         // Проверяем условие обновления наград
-        if (hoursSinceRewards >= 8 && user.rewardsUpdated) {
+        if (differenceInHoursRewards >= 8 && user.rewardsUpdated) {
           user.rewardsUpdated = false;
           console.log(`rewardsUpdated`);
           shouldSave = true;
