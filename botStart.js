@@ -6,7 +6,7 @@ const bot = new tgBot(token, { polling: true });
 
 const createUser = require("./BDcontentUtils");
 const buttonCreate = require("./StartButtonCreate");
-const updateButtons = require("./BDcontentUtils");
+const updateButtons = require("./updateButtons");
 
 const start = async () => {
   // Команда /start
