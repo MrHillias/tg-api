@@ -116,11 +116,7 @@ app.get("/users/:chatId", async (req, res) => {
         );
 
         let shouldSave = false;
-        /* 
-        console.log("LTGA: " + user.lastTimeGamessAdded); 
-        console.log("LTGA Date(): " + new Date(user.lastTimeGamesAdded)); 
-        console.log("LTRA: " + user.lastTimeGamessAdded); 
-        console.log("LTRA Date(): " + new Date(user.lastTimeGamesAdded));  */
+
         console.log("LTGA diff: " + differenceInHoursGames);
         console.log("LTRA diff: " + differenceInHoursRewards);
         // Проверяем условие обновления времени события
@@ -133,6 +129,7 @@ app.get("/users/:chatId", async (req, res) => {
         // Проверяем условие обновления наград
         if (differenceInHoursRewards >= 8 && user.rewardsUpdated) {
           user.rewardsUpdated = false;
+          user.farmPoints = 28.8;
           console.log(`rewardsUpdated`);
           shouldSave = true;
         }
