@@ -117,6 +117,7 @@ app.get("/users/:chatId", async (req, res) => {
 
         let shouldSave = false;
 
+        console.log("LTGA diff: " + differenceInHoursGames);
         // Проверяем условие обновления времени события
         if (differenceInHoursGames >= 24 && user.updatedToday) {
           user.updatedToday = false;
