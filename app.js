@@ -100,7 +100,7 @@ app.get("/users/:chatId", async (req, res) => {
         await user.save();
       } else {
         const currentTime = new Date();
-        const userTimeGames = new Date(user.lastTimeGamessAdded);
+        const userTimeGames = new Date(user.lastTimeGamesAdded);
         const userTimeRewards = new Date(user.lastTimeRewardsAdded);
 
         // Вычисляем разницу в миллисекундах
@@ -116,7 +116,11 @@ app.get("/users/:chatId", async (req, res) => {
         );
 
         let shouldSave = false;
-
+        /* 
+        console.log("LTGA: " + user.lastTimeGamessAdded); 
+        console.log("LTGA Date(): " + new Date(user.lastTimeGamesAdded)); 
+        console.log("LTRA: " + user.lastTimeGamessAdded); 
+        console.log("LTRA Date(): " + new Date(user.lastTimeGamesAdded));  */
         console.log("LTGA diff: " + differenceInHoursGames);
         console.log("LTRA diff: " + differenceInHoursRewards);
         // Проверяем условие обновления времени события
